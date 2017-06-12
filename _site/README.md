@@ -4,14 +4,14 @@
 
 ### 主题预览
 
-[YongYuan's Homepage](http://yongyuan.name/)。
+[Vista's Homepage](https://nicky918.github.io/)。
 
 ### 已完成功能
 
 1. 调用豆瓣api显示书单列表
-2. ~~在线简历~~（未在我的个人博客上展示，因为我有pdf的版本，为避免两处都要维护，所以弃用，如果需要，可以在导航栏上添加[resume](https://github.com/willard-yuan/willard-yuan.github.io/tree/master/resume)）
-3. 添加latex公式支持([效果见博文](http://yongyuan.name/blog/decision-tree.html))
-4. 添加个人时间线([timeline](http://yongyuan.name/timeline/))
+2. ~~在线简历~~（未在我的个人博客上展示，因为我有pdf的版本，为避免两处都要维护，所以弃用，如果需要，可以在导航栏上添加）
+3. 添加latex公式支持([效果见博文](https://nicky918.github.io/blog/decision-tree.html))
+4. 添加个人时间线([timeline](https://nicky918.github.io/timeline/))
 
 ### 安装步骤
 
