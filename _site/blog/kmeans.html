@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="aexITLS38FdIRzwj25OVWxm87rpa9l-UV0URTyC9cTs" />
   <title>
-    k-means算法
+    机器学习：k-means算法
     
   </title>
   <link rel="stylesheet" href="../css/site.css">
@@ -67,7 +67,7 @@
 <div class="inner">
 <div class = "post-header">
   <h1>
-    k-means算法
+    机器学习：k-means算法
   </h1>
   <ul class="meta">
   	<i class="fa fa-calendar"></i>
@@ -78,10 +78,10 @@
   	<i class="space"></i>
   	<i class="fa fa-tags"></i>
   	
-  	    <a class="tag" href="http://localhost:4000/tag/#k-means">k-means</a>
+  	    <a class="tag" href="http://localhost:4000/tag/#机器学习">机器学习</a>
   	    <i class="space"></i>
   	
-  	<i class="space"></i> 字数:13877
+  	<i class="space"></i> 字数:20815
   </ul>
 </div>
 </div>
@@ -140,6 +140,122 @@
 </ol>
 
 <h1 id="源码示例">源码示例</h1>
+
+<h2 id="python">python</h2>
+
+<p>自编</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># coding=utf-8</span>
+
+<span class="s">'''
+ * k-Means算法，聚类算法；  
+ * 实现步骤：1. 首先是随机获取总体中的K个元素作为总体的K个中心；  
+ * 2. 接下来对总体中的元素进行分类，每个元素都去判断自己到K个中心的距离，并归类到最近距离中心去；  
+ * 3. 计算每个聚类的平均值，并作为新的中心点  
+ * 4. 重复2，3步骤，直到这k个中线点不再变化（收敛了），或执行了足够多的迭代  
+'''</span>
+
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linalg</span> <span class="k">as</span> <span class="n">ll</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">cluster</span> <span class="k">as</span> <span class="n">sc</span>
+
+<span class="c"># train data</span>
+<span class="n">srcdata</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span> <span class="mf">5.1</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span>
+            <span class="p">[</span> <span class="mf">4.9</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.2</span> <span class="p">],[</span> <span class="mf">4.7</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">0.2</span> <span class="p">],</span>
+            <span class="p">[</span> <span class="mf">4.6</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.2</span> <span class="p">],[</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.2</span> <span class="p">],</span>
+            <span class="p">[</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">4.7</span><span class="p">,</span> <span class="mf">1.4</span> <span class="p">],[</span> <span class="mf">6.4</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">1.5</span> <span class="p">],</span>
+            <span class="p">[</span> <span class="mf">6.9</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="mf">4.9</span><span class="p">,</span> <span class="mf">1.5</span> <span class="p">],[</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">1.3</span> <span class="p">],</span>
+            <span class="p">[</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">4.6</span><span class="p">,</span> <span class="mf">1.5</span> <span class="p">],[</span> <span class="mf">5.7</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">1.3</span> <span class="p">],</span>
+            <span class="p">[</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.8</span><span class="p">,</span> <span class="mf">2.2</span> <span class="p">],[</span> <span class="mf">7.6</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">6.6</span><span class="p">,</span> <span class="mf">2.1</span> <span class="p">],</span>
+            <span class="p">[</span> <span class="mf">4.9</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">1.7</span> <span class="p">],[</span> <span class="mf">7.3</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mf">6.3</span><span class="p">,</span> <span class="mf">1.8</span> <span class="p">],</span>
+            <span class="p">[</span> <span class="mf">6.7</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">5.8</span><span class="p">,</span> <span class="mf">1.8</span> <span class="p">],[</span> <span class="mf">6.9</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">,</span> <span class="mf">2.3</span> <span class="p">]</span> <span class="p">]</span>
+
+<span class="c">#print srcdata</span>
+
+<span class="n">srclen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">srcdata</span><span class="p">)</span>
+
+<span class="n">len0</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">srcdata</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c"># set k = 5</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c"># step 1</span>
+
+<span class="c"># index = range(k) -- use first k</span>
+
+<span class="c"># use random to get index.</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span> <span class="nb">range</span><span class="p">(</span> <span class="n">srclen</span> <span class="p">)</span> <span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+
+<span class="c">#print index</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">len0</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">len0</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">len0</span><span class="p">):</span>
+        <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">srcdata</span><span class="p">[</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">j</span><span class="p">]</span>
+
+<span class="k">print</span> <span class="n">c</span>
+
+
+<span class="c"># set stop threshold</span>
+
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">0.001</span>
+
+<span class="n">dis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="n">calindex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">srclen</span><span class="p">)</span>
+
+<span class="n">norm</span> <span class="o">=</span> <span class="mf">10.0</span>
+
+<span class="c"># step 4</span>
+
+<span class="k">while</span> <span class="n">norm</span><span class="o">&gt;</span><span class="n">delta</span><span class="p">:</span>
+
+    <span class="c"># step 2</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="n">srclen</span> <span class="p">):</span>
+
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+            <span class="n">dis</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">len0</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+
+                <span class="n">dis</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">srcdata</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="n">j</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">srcdata</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+
+        <span class="n">calindex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dis</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="nb">min</span><span class="p">(</span><span class="n">dis</span><span class="p">)</span> <span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c"># step 3</span>
+    
+    <span class="n">newc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">len0</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">len0</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">srclen</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">len0</span><span class="p">):</span>
+            <span class="n">newc</span><span class="p">[</span><span class="n">calindex</span><span class="p">[</span><span class="n">xx</span><span class="p">]][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">srcdata</span><span class="p">[</span><span class="n">xx</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">calindex</span> <span class="o">==</span> <span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="c">#print size</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">len0</span><span class="p">):</span>
+            <span class="n">newc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">/=</span><span class="n">size</span>
+
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">ll</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">c</span><span class="o">-</span><span class="n">newc</span><span class="p">)</span>
+
+    <span class="c">#print norm</span>
+
+    <span class="n">c</span> <span class="o">=</span> <span class="n">newc</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">print</span> <span class="n">c</span>
+
+<span class="k">print</span> <span class="n">calindex</span>
+
+<span class="c">## sklearn -&gt; k-means++</span>
+
+<span class="n">cc</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">k_means</span><span class="p">(</span><span class="n">srcdata</span><span class="p">,</span><span class="n">k</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">cc</span>
+</code></pre>
+</div>
 
 <h2 id="java">Java</h2>
 
