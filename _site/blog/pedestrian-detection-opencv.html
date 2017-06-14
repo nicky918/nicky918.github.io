@@ -81,7 +81,7 @@
   	    <a class="tag" href="http://localhost:4000/tag/#OpenCV">OpenCV</a>
   	    <i class="space"></i>
   	
-  	<i class="space"></i> 字数:10429
+  	<i class="space"></i> 字数:10080
   </ul>
 </div>
 </div>
@@ -101,25 +101,7 @@
 
 <p>如果你已经熟悉了这个过程，或者你仅仅只是想看看OpenCV行人检测的代码，那么现在就打开一个新文件，并将它命名为<code class="highlighter-rouge">detect.py</code>，开始我们的编程之旅吧：</p>
 
-<div class="preserve-original-format">
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17</pre></td><td class="code"><pre><span class="c"># import the necessary packages</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># import the necessary packages</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 <span class="kn">from</span> <span class="nn">imutils.object_detection</span> <span class="kn">import</span> <span class="n">non_max_suppression</span>
 <span class="kn">from</span> <span class="nn">imutils</span> <span class="kn">import</span> <span class="n">paths</span>
@@ -135,9 +117,8 @@
 
 <span class="c"># initialize the HOG descriptor/person detector</span>
 <span class="n">hog</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">HOGDescriptor</span><span class="p">()</span>
-<span class="n">hog</span><span class="o">.</span><span class="n">setSVMDetector</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">HOGDescriptor_getDefaultPeopleDetector</span><span class="p">())</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></figure>
-
+<span class="n">hog</span><span class="o">.</span><span class="n">setSVMDetector</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">HOGDescriptor_getDefaultPeopleDetector</span><span class="p">())</span>
+</code></pre>
 </div>
 
 <p><strong>第2-8行</strong>导入一些我们必要的包，我们导入<code class="highlighter-rouge">print_function</code>确保我们的代码同时在Python2.7和Python3上兼容，这样可以使得我们的代码能够在OpenCV2.4.X和OPenCV3上都能够工作，然后，从我的<a href="https://github.com/jrosebr1/imutils">imutils</a>包中我们导入<code class="highlighter-rouge">non_max_suppression</code>函数。</p>
@@ -167,61 +148,7 @@
 
 <p>到了这里，我们的OpenCV行人检测器已经完全载入了，我们只需要把它应用到一些图像上：</p>
 
-<div class="preserve-original-format">
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53</pre></td><td class="code"><pre><span class="c"># import the necessary packages</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># import the necessary packages</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 <span class="kn">from</span> <span class="nn">imutils.object_detection</span> <span class="kn">import</span> <span class="n">non_max_suppression</span>
 <span class="kn">from</span> <span class="nn">imutils</span> <span class="kn">import</span> <span class="n">paths</span>
@@ -273,9 +200,8 @@
 	<span class="c"># show the output images</span>
 	<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">"Before NMS"</span><span class="p">,</span> <span class="n">orig</span><span class="p">)</span>
 	<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">"After NMS"</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
-	<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></figure>
-
+	<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre>
 </div>
 
 <p>在<strong>第20行</strong>我们对我们的<code class="highlighter-rouge">--images</code>目录下的图像进行循环，这篇博文中使用的例子样本是从<a href="http://pascal.inrialpes.fr/data/human/">INRIA Person Dataset</a>这个很流行的人物库上抽取的，更具体的说，是从GRAZ-01子集中抽取出来的，这些图片存放在源码目录下面了。</p>
