@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="aexITLS38FdIRzwj25OVWxm87rpa9l-UV0URTyC9cTs" />
   <title>
-    图像检索：PicSearch is now an open source project
+    python：距离实现综述
     
   </title>
   <link rel="stylesheet" href="../css/site.css">
@@ -67,21 +67,21 @@
 <div class="inner">
 <div class = "post-header">
   <h1>
-    图像检索：PicSearch is now an open source project
+    python：距离实现综述
   </h1>
   <ul class="meta">
   	<i class="fa fa-calendar"></i>
-  	2015年09月29日
+  	2017年06月12日
   	<i class="space"></i>
   	<i class="fa fa-archive"></i>
-  	<a class="tag" href="http://localhost:4000/blog/categories.html#Image Retrieval">Image Retrieval</a>
+  	<a class="tag" href="http://localhost:4000/blog/categories.html#机器学习">机器学习</a>
   	<i class="space"></i>
   	<i class="fa fa-tags"></i>
   	
-  	    <a class="tag" href="http://localhost:4000/tag/#图像检索">图像检索</a>
+  	    <a class="tag" href="http://localhost:4000/tag/#python">python</a>
   	    <i class="space"></i>
   	
-  	<i class="space"></i> 字数:1885
+  	<i class="space"></i> 字数:2228
   </ul>
 </div>
 </div>
@@ -93,80 +93,73 @@
               <div class="toc"></div>
               </div>
           </div>
-  	   <h2 id="brief-introduction">Brief introduction</h2>
+  	   <blockquote>
+  <p>积累+学习</p>
+</blockquote>
 
-<p><strong>PicSearch</strong> is an image search engine based on Convolutional Neural Network (CNN) feature. It’s a very simple demo and it just showes the performance of CNN for image retrieval. The demo site can access to <a href="http://search.yongyuan.name/"><strong>demo</strong></a>.</p>
+<h2 id="综述">综述</h2>
 
-<object width="800" height="600">
-<param name="movie" value="http://player.youku.com/player.php/sid/XMTM0NzYyMzE4OA==/v.swf" />&lt;/param&gt;
-<param name="allowFullScreen" value="true" />
-<param name="allowScriptAccess" value="always" />
-<param name="wmode" value="transparent" />&lt;/param&gt;
-<param name="bgColor" value="#ffffff" />&lt;/param&gt;
-<embed src="http://player.youku.com/player.php/sid/XMTM0NzYyMzE4OA==/v.swf" allowfullscreen="true" quality="high" width="480" height="400" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" />&lt;/embed&gt;
-</object>
-
-<h2 id="download-the-code-and-dataset">Download the code and dataset</h2>
-
-<p>The PicSearch is running on Caltech256 image dataset, which contains 29780 images with 256 categories. Before running the project, you must download the following code and dataset:</p>
-
-<ol>
-  <li>PicSearch <a href="https://github.com/willard-yuan/CNN-Web-Demo-for-Image-Retrieval">code</a>.</li>
-  <li>The features extract by CNN on Caltech256 <a href="http://pan.baidu.com/s/14YAeE">256feat2048Norml.mat</a>.</li>
-  <li>The <a href="http://pan.baidu.com/s/1kT4atkb">thumbnails</a> of Caltech256. The thumbnails are just for showing the search result, you can replace it by the original image dataset.</li>
-</ol>
-
-<p><strong>Note</strong>: to test it on other dataset, you must extract the features first. You can use <a href="https://github.com/willard-yuan/CNN-for-Image-Retrieval">CNN-for-Image-Retrieval</a> to extract features on other dataset.</p>
-
-<h2 id="how-to-run-the-code">How to run the code</h2>
-
-<p>The code is written by Python, and the web server is cherrypy, so It’s very easy to understand the code and to run the code. The structure of <strong>PicSearch</strong> is as follows:</p>
-
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>├── 256feat2048Norml.mat
-├── bootstrap
-├── favicon.ico
-├── searchEnginePython.py
-├── service-server.conf
-├── service.conf
-├── style.css
-└── thumbnails
-</code></pre>
-</div>
-
-<p>To run the code successfully, You are suggested to following the below steps:</p>
+<p>所列的距离公式列表和代码如下：</p>
 
 <ul>
-  <li>set the setting in <code class="highlighter-rouge">service.conf</code>:</li>
+  <li>闵可夫斯基距离(Minkowski Distance)</li>
+  <li><strong>欧氏距离(Euclidean Distance)</strong></li>
+  <li><strong>曼哈顿距离(Manhattan Distance)</strong></li>
+  <li>切比雪夫距离(Chebyshev Distance)</li>
+  <li>夹角余弦(Cosine)</li>
+  <li>汉明距离(Hamming distance)</li>
+  <li>杰卡德相似系数(Jaccard similarity coefficient)</li>
 </ul>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>global]
-server.socket_host <span class="o">=</span> <span class="s2">"127.0.0.1"</span>
-server.socket_port <span class="o">=</span> 8080
-server.thread_pool <span class="o">=</span> 10
-tools.sessions.on <span class="o">=</span> True
+<p>读者可根据自己需求有选择的学习。因使用矢量编程的方法，距离计算得到了较大的简化。</p>
 
-<span class="o">[</span>/]
-tools.staticdir.root <span class="o">=</span> <span class="s2">"I:</span><span class="se">\P</span><span class="s2">icSearch"</span>
+<p>其中欧氏距离与曼哈顿距离是比较常用的</p>
 
-<span class="o">[</span>/]
-tools.staticdir.on <span class="o">=</span> True
-tools.staticdir.dir <span class="o">=</span> <span class="s1">''</span>
+<h2 id="欧氏距离">欧氏距离</h2>
+
+<p><img src="../images/posts/2017/Euclidean.png" alt="" /></p>
+
+<p>python 源码 - 三种实现</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">vect1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]);</span>
+<span class="n">vect2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]);</span>
+
+<span class="n">dis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">vect1</span> <span class="o">-</span> <span class="n">vect2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">vect1</span> <span class="o">-</span> <span class="n">vect2</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="c">#sqrt(3)</span>
+<span class="k">print</span> <span class="n">dis</span>
+
+<span class="n">dis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">vect1</span> <span class="o">-</span> <span class="n">vect2</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+
+<span class="k">print</span> <span class="n">dis</span>
+
+<span class="n">dis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vect1</span> <span class="o">-</span> <span class="n">vect2</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">dis</span>
 </code></pre>
 </div>
 
-<p>Changes the path of <code class="highlighter-rouge">tools.staticdir.root</code> to your path.</p>
+<h2 id="曼哈顿距离manhattan-distance">曼哈顿距离(Manhattan Distance)</h2>
 
-<ul>
-  <li>run the server:</li>
-</ul>
+<p><img src="../images/posts/2017/manhattan.png" alt="" /></p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>python searchEnginePython.py
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">vect1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">vect2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">dis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">vect1</span><span class="o">-</span><span class="n">vect2</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="c">#3</span>
+<span class="k">print</span> <span class="n">dis</span>
 </code></pre>
 </div>
 
-<p>Then open your browse and put the site: <a href="http://127.0.0.1/">127.0.0.1</a>.</p>
+<h2 id="引用">引用</h2>
 
-<p>That’s all. Enjoy yourself! If you have problem, you can open an issue on <a href="https://github.com/willard-yuan/CNN-Web-Demo-for-Image-Retrieval/issues/new">CNN-Web-Demo-for-Image-Retrieval</a>.</p>
+<p><a href="http://blog.csdn.net/guojingjuan/article/details/50396254">python 各类距离公式实现</a></p>
 
   	</div>
 	</div>
@@ -177,13 +170,9 @@ tools.staticdir.dir <span class="o">=</span> <span class="s1">''</span>
 <ul class="pager">
     
     <li class="previous">
-       <a href="/blog/written-examination-of-some-companys.html">←不舍编码：部分互联网公司笔试综合题及答案</a>
+       <a href="/blog/kmeans.html">←机器学习：k-means算法</a>
     </li>
     
-    
-    <li class="next">
-    	<a href="/blog/random-forest-understanding.html">数据分类浅谈：随机森林→</a>
-    </li>
     
  </ul>
 </section>

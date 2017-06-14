@@ -9,6 +9,7 @@ safe: true
 lsi: false
 
 markdown: kramdown
+highlighter: rouge
 kramdown:
     input: GFM # Enable GitHub Flavored Markdown (fenced code blocks)
     extensions:
