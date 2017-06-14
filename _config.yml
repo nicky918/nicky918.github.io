@@ -9,16 +9,31 @@ safe: true
 lsi: false
 
 markdown: kramdown
-highlighter: rouge
+
 kramdown:
-    input: GFM # Enable GitHub Flavored Markdown (fenced code blocks)
-    extensions:
-    - autolink
-    - footnotes
-    - smart
+  input: GFM # Enable GitHub Flavored Markdown (fenced code blocks)
+  extensions:
+  - autolink
+  - footnotes
+  - smart
+  auto_ids:       true
+  footnote_nr:    1
+  entity_output:  as_char
+  toc_levels:     1..6
+  smart_quotes:   lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+  syntax_highlighter: rouge
+
+  syntax_highlighter_opts:
+    wrap:              div
+    # line_numbers:      nil
+    # line_number_start: 1
+    tab_width:         4
+    bold_every:        10
+    css:               style
+
 hard_wrap: false
 #  use_coderay: true
-syntax_highlighter: rouge
 #  coderay:
 #  coderay_line_numbers:  nil
 

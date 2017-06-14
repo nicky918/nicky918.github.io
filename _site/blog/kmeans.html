@@ -81,7 +81,7 @@
   	    <a class="tag" href="http://localhost:4000/tag/#机器学习">机器学习</a>
   	    <i class="space"></i>
   	
-  	<i class="space"></i> 字数:20815
+  	<i class="space"></i> 字数:32427
   </ul>
 </div>
 </div>
@@ -261,69 +261,69 @@
 
 <p><a href="http://blog.csdn.net/jshayzf/article/details/22067855">来源</a></p>
 
-<pre><code class="language-Java">import java.io.BufferedReader;  
-import java.io.FileInputStream;  
-import java.io.IOException;  
-import java.io.InputStreamReader;  
-import java.util.ArrayList;  
-import java.util.List;  
-import java.util.Random;  
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.io.FileInputStream</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>  
   
-public class Kmeans {  
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Kmeans</span> <span class="o">{</span>  
       
-    /** 
+    <span class="cm">/** 
      * @param args 
      * @throws IOException 
-     */  
+     */</span>  
       
-    public static List&lt;ArrayList&lt;ArrayList&lt;Double&gt;&gt;&gt;   
-    initHelpCenterList(List&lt;ArrayList&lt;ArrayList&lt;Double&gt;&gt;&gt; helpCenterList,int k){  
-        for(int i=0;i&lt;k;i++){  
-            helpCenterList.add(new ArrayList&lt;ArrayList&lt;Double&gt;&gt;());  
-        }     
-        return helpCenterList;  
-    }  
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;&gt;&gt;</span>   
+    <span class="nf">initHelpCenterList</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;&gt;&gt;</span> <span class="n">helpCenterList</span><span class="o">,</span><span class="kt">int</span> <span class="n">k</span><span class="o">){</span>  
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>  
+            <span class="n">helpCenterList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;&gt;());</span>  
+        <span class="o">}</span>     
+        <span class="k">return</span> <span class="n">helpCenterList</span><span class="o">;</span>  
+    <span class="o">}</span>  
       
-    /** 
+    <span class="cm">/** 
      * @param args 
      * @throws IOException 
-     */  
-    public static void main(String[] args) throws IOException{  
+     */</span>  
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">{</span>  
           
-        List&lt;ArrayList&lt;Double&gt;&gt; centers = new ArrayList&lt;ArrayList&lt;Double&gt;&gt;();  
-        List&lt;ArrayList&lt;Double&gt;&gt; newCenters = new ArrayList&lt;ArrayList&lt;Double&gt;&gt;();  
-        List&lt;ArrayList&lt;ArrayList&lt;Double&gt;&gt;&gt; helpCenterList = new ArrayList&lt;ArrayList&lt;ArrayList&lt;Double&gt;&gt;&gt;();  
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;&gt;</span> <span class="n">centers</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;&gt;();</span>  
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;&gt;</span> <span class="n">newCenters</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;&gt;();</span>  
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;&gt;&gt;</span> <span class="n">helpCenterList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;&gt;&gt;();</span>  
           
-        //读入原始数据  
-        BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream("wine.txt")));  
-        String data = null;  
-        List&lt;ArrayList&lt;Double&gt;&gt; dataList = new ArrayList&lt;ArrayList&lt;Double&gt;&gt;();  
-        while((data=br.readLine())!=null){  
-            //System.out.println(data);  
-            String []fields = data.split(",");  
-            List&lt;Double&gt; tmpList = new ArrayList&lt;Double&gt;();  
-            for(int i=0; i&lt;fields.length;i++)  
-                tmpList.add(Double.parseDouble(fields[i]));  
-            dataList.add((ArrayList&lt;Double&gt;) tmpList);  
-        }  
-        br.close();  
+        <span class="c1">//读入原始数据  </span>
+        <span class="n">BufferedReader</span> <span class="n">br</span><span class="o">=</span><span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="s">"wine.txt"</span><span class="o">)));</span>  
+        <span class="n">String</span> <span class="n">data</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>  
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;&gt;</span> <span class="n">dataList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;&gt;();</span>  
+        <span class="k">while</span><span class="o">((</span><span class="n">data</span><span class="o">=</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">())!=</span><span class="kc">null</span><span class="o">){</span>  
+            <span class="c1">//System.out.println(data);  </span>
+            <span class="n">String</span> <span class="o">[]</span><span class="n">fields</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">","</span><span class="o">);</span>  
+            <span class="n">List</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">tmpList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;();</span>  
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">fields</span><span class="o">.</span><span class="na">length</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span>  
+                <span class="n">tmpList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Double</span><span class="o">.</span><span class="na">parseDouble</span><span class="o">(</span><span class="n">fields</span><span class="o">[</span><span class="n">i</span><span class="o">]));</span>  
+            <span class="n">dataList</span><span class="o">.</span><span class="na">add</span><span class="o">((</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;)</span> <span class="n">tmpList</span><span class="o">);</span>  
+        <span class="o">}</span>  
+        <span class="n">br</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>  
           
-        //随机确定K个初始聚类中心  
-        Random rd = new Random();  
-        int k=3;  
-        int [] initIndex={59,71,48};  
-        int [] helpIndex = {0,59,130};  
-        int [] givenIndex = {0,1,2};  
-        System.out.println("random centers' index");  
-        for(int i=0;i&lt;k;i++){  
-            int index = rd.nextInt(initIndex[i]) + helpIndex[i];  
-            //int index = givenIndex[i];  
-            System.out.println("index "+index);  
-            centers.add(dataList.get(index));  
-            helpCenterList.add(new ArrayList&lt;ArrayList&lt;Double&gt;&gt;());  
-        }     
+        <span class="c1">//随机确定K个初始聚类中心  </span>
+        <span class="n">Random</span> <span class="n">rd</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="o">();</span>  
+        <span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="o">;</span>  
+        <span class="kt">int</span> <span class="o">[]</span> <span class="n">initIndex</span><span class="o">={</span><span class="mi">59</span><span class="o">,</span><span class="mi">71</span><span class="o">,</span><span class="mi">48</span><span class="o">};</span>  
+        <span class="kt">int</span> <span class="o">[]</span> <span class="n">helpIndex</span> <span class="o">=</span> <span class="o">{</span><span class="mi">0</span><span class="o">,</span><span class="mi">59</span><span class="o">,</span><span class="mi">130</span><span class="o">};</span>  
+        <span class="kt">int</span> <span class="o">[]</span> <span class="n">givenIndex</span> <span class="o">=</span> <span class="o">{</span><span class="mi">0</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">};</span>  
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"random centers' index"</span><span class="o">);</span>  
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>  
+            <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">rd</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="n">initIndex</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">+</span> <span class="n">helpIndex</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>  
+            <span class="c1">//int index = givenIndex[i];  </span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"index "</span><span class="o">+</span><span class="n">index</span><span class="o">);</span>  
+            <span class="n">centers</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">dataList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">index</span><span class="o">));</span>  
+            <span class="n">helpCenterList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;&gt;());</span>  
+        <span class="o">}</span>     
           
-        /* 
+        <span class="cm">/* 
         //注释掉的这部分目的是，取测试数据集最后稳定的三个类簇的聚类中心作为初始聚类中心 
         centers = new ArrayList&lt;ArrayList&lt;Double&gt;&gt;(); 
         for(int i=0;i&lt;59;i++) 
@@ -344,84 +344,85 @@ public class Kmeans {
             } 
             centers.add(tmp); 
         } 
-        */  
+        */</span>  
           
-        //输出k个初始中心  
-        System.out.println("original centers:");  
-        for(int i=0;i&lt;k;i++)  
-            System.out.println(centers.get(i));  
+        <span class="c1">//输出k个初始中心  </span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"original centers:"</span><span class="o">);</span>  
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span>  
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">centers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>  
           
-        while(true)  
-        {//进行若干次迭代，直到聚类中心稳定  
+        <span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>  
+        <span class="o">{</span><span class="c1">//进行若干次迭代，直到聚类中心稳定  </span>
               
-            for(int i=0;i&lt;dataList.size();i++){//标注每一条记录所属于的中心  
-                double minDistance=99999999;  
-                int centerIndex=-1;  
-                for(int j=0;j&lt;k;j++){//离0~k之间哪个中心最近  
-                    double currentDistance=0;  
-                    for(int t=1;t&lt;centers.get(0).size();t++){//计算两点之间的欧式距离  
-                        currentDistance +=  ((centers.get(j).get(t)-dataList.get(i).get(t))/(centers.get(j).get(t)+dataList.get(i).get(t))) * ((centers.get(j).get(t)-dataList.get(i).get(t))/(centers.get(j).get(t)+dataList.get(i).get(t)));   
-                    }  
-                    if(minDistance&gt;currentDistance){  
-                        minDistance=currentDistance;  
-                        centerIndex=j;  
-                    }  
-                }  
-                helpCenterList.get(centerIndex).add(dataList.get(i));  
-            }  
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">dataList</span><span class="o">.</span><span class="na">size</span><span class="o">();</span><span class="n">i</span><span class="o">++){</span><span class="c1">//标注每一条记录所属于的中心  </span>
+                <span class="kt">double</span> <span class="n">minDistance</span><span class="o">=</span><span class="mi">99999999</span><span class="o">;</span>  
+                <span class="kt">int</span> <span class="n">centerIndex</span><span class="o">=-</span><span class="mi">1</span><span class="o">;</span>  
+                <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">k</span><span class="o">;</span><span class="n">j</span><span class="o">++){</span><span class="c1">//离0~k之间哪个中心最近  </span>
+                    <span class="kt">double</span> <span class="n">currentDistance</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>  
+                    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span><span class="n">t</span><span class="o">&lt;</span><span class="n">centers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">size</span><span class="o">();</span><span class="n">t</span><span class="o">++){</span><span class="c1">//计算两点之间的欧式距离  </span>
+                        <span class="n">currentDistance</span> <span class="o">+=</span>  <span class="o">((</span><span class="n">centers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">t</span><span class="o">)-</span><span class="n">dataList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">t</span><span class="o">))/(</span><span class="n">centers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">t</span><span class="o">)+</span><span class="n">dataList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">t</span><span class="o">)))</span> <span class="o">*</span> <span class="o">((</span><span class="n">centers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">t</span><span class="o">)-</span><span class="n">dataList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">t</span><span class="o">))/(</span><span class="n">centers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">t</span><span class="o">)+</span><span class="n">dataList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">t</span><span class="o">)));</span>   
+                    <span class="o">}</span>  
+                    <span class="k">if</span><span class="o">(</span><span class="n">minDistance</span><span class="o">&gt;</span><span class="n">currentDistance</span><span class="o">){</span>  
+                        <span class="n">minDistance</span><span class="o">=</span><span class="n">currentDistance</span><span class="o">;</span>  
+                        <span class="n">centerIndex</span><span class="o">=</span><span class="n">j</span><span class="o">;</span>  
+                    <span class="o">}</span>  
+                <span class="o">}</span>  
+                <span class="n">helpCenterList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">centerIndex</span><span class="o">).</span><span class="na">add</span><span class="o">(</span><span class="n">dataList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>  
+            <span class="o">}</span>  
               
-        //  System.out.println(helpCenterList);  
+        <span class="c1">//  System.out.println(helpCenterList);  </span>
               
-            //计算新的k个聚类中心  
-            for(int i=0;i&lt;k;i++){  
+            <span class="c1">//计算新的k个聚类中心  </span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>  
                   
-                ArrayList&lt;Double&gt; tmp = new ArrayList&lt;Double&gt;();  
+                <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">tmp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;();</span>  
                   
-                for(int j=0;j&lt;centers.get(0).size();j++){  
-                    double sum=0;  
-                    for(int t=0;t&lt;helpCenterList.get(i).size();t++)  
-                        sum+=helpCenterList.get(i).get(t).get(j);  
-                    tmp.add(sum/helpCenterList.get(i).size());  
-                }  
+                <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">centers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">size</span><span class="o">();</span><span class="n">j</span><span class="o">++){</span>  
+                    <span class="kt">double</span> <span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>  
+                    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">t</span><span class="o">&lt;</span><span class="n">helpCenterList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">size</span><span class="o">();</span><span class="n">t</span><span class="o">++)</span>  
+                        <span class="n">sum</span><span class="o">+=</span><span class="n">helpCenterList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">t</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">);</span>  
+                    <span class="n">tmp</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">sum</span><span class="o">/</span><span class="n">helpCenterList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">size</span><span class="o">());</span>  
+                <span class="o">}</span>  
                   
-                newCenters.add(tmp);  
+                <span class="n">newCenters</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">tmp</span><span class="o">);</span>  
                   
-            }  
-            System.out.println("\nnew clusters' centers:\n");  
-            for(int i=0;i&lt;k;i++)  
-                System.out.println(newCenters.get(i));  
-            //计算新旧中心之间的距离，当距离小于阈值时，聚类算法结束  
-            double distance=0;  
+            <span class="o">}</span>  
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\nnew clusters' centers:\n"</span><span class="o">);</span>  
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span>  
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">newCenters</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>  
+            <span class="c1">//计算新旧中心之间的距离，当距离小于阈值时，聚类算法结束  </span>
+            <span class="kt">double</span> <span class="n">distance</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>  
               
-            for(int i=0;i&lt;k;i++){  
-                for(int j=1;j&lt;centers.get(0).size();j++){//计算两点之间的欧式距离  
-                    distance += ((centers.get(i).get(j)-newCenters.get(i).get(j))/(centers.get(i).get(j)+newCenters.get(i).get(j))) * ((centers.get(i).get(j)-newCenters.get(i).get(j))/(centers.get(i).get(j)+newCenters.get(i).get(j)));   
-                }  
-                //System.out.println(i+" "+distance);  
-            }  
-            System.out.println("\ndistance: "+distance+"\n\n");  
-            if(distance==0)//小于阈值时，结束循环  
-                break;  
-            else//否则，新的中心来代替旧的中心，进行下一轮迭代  
-            {  
-                centers = new ArrayList&lt;ArrayList&lt;Double&gt;&gt;(newCenters);  
-                //System.out.println(newCenters);  
-                newCenters = new ArrayList&lt;ArrayList&lt;Double&gt;&gt;();  
-                helpCenterList = new ArrayList&lt;ArrayList&lt;ArrayList&lt;Double&gt;&gt;&gt;();  
-                helpCenterList=initHelpCenterList(helpCenterList,k);  
-            }  
-        }  
-        //输出最后聚类结果  
-        for(int i=0;i&lt;k;i++){  
-            System.out.println("\n\nCluster: "+(i+1)+"   size: "+helpCenterList.get(i).size()+" :\n\n");  
-            for(int j=0;j&lt;helpCenterList.get(i).size();j++)  
-            {  
-                System.out.println(helpCenterList.get(i).get(j));  
-            }  
-        }  
-    }  
-}  
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>  
+                <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">centers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">size</span><span class="o">();</span><span class="n">j</span><span class="o">++){</span><span class="c1">//计算两点之间的欧式距离  </span>
+                    <span class="n">distance</span> <span class="o">+=</span> <span class="o">((</span><span class="n">centers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">)-</span><span class="n">newCenters</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">))/(</span><span class="n">centers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">)+</span><span class="n">newCenters</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">)))</span> <span class="o">*</span> <span class="o">((</span><span class="n">centers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">)-</span><span class="n">newCenters</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">))/(</span><span class="n">centers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">)+</span><span class="n">newCenters</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">)));</span>   
+                <span class="o">}</span>  
+                <span class="c1">//System.out.println(i+" "+distance);  </span>
+            <span class="o">}</span>  
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\ndistance: "</span><span class="o">+</span><span class="n">distance</span><span class="o">+</span><span class="s">"\n\n"</span><span class="o">);</span>  
+            <span class="k">if</span><span class="o">(</span><span class="n">distance</span><span class="o">==</span><span class="mi">0</span><span class="o">)</span><span class="c1">//小于阈值时，结束循环  </span>
+                <span class="k">break</span><span class="o">;</span>  
+            <span class="k">else</span><span class="c1">//否则，新的中心来代替旧的中心，进行下一轮迭代  </span>
+            <span class="o">{</span>  
+                <span class="n">centers</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;&gt;(</span><span class="n">newCenters</span><span class="o">);</span>  
+                <span class="c1">//System.out.println(newCenters);  </span>
+                <span class="n">newCenters</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;&gt;();</span>  
+                <span class="n">helpCenterList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;&gt;&gt;();</span>  
+                <span class="n">helpCenterList</span><span class="o">=</span><span class="n">initHelpCenterList</span><span class="o">(</span><span class="n">helpCenterList</span><span class="o">,</span><span class="n">k</span><span class="o">);</span>  
+            <span class="o">}</span>  
+        <span class="o">}</span>  
+        <span class="c1">//输出最后聚类结果  </span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>  
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\n\nCluster: "</span><span class="o">+(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">)+</span><span class="s">"   size: "</span><span class="o">+</span><span class="n">helpCenterList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">size</span><span class="o">()+</span><span class="s">" :\n\n"</span><span class="o">);</span>  
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">helpCenterList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">size</span><span class="o">();</span><span class="n">j</span><span class="o">++)</span>  
+            <span class="o">{</span>  
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">helpCenterList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">));</span>  
+            <span class="o">}</span>  
+        <span class="o">}</span>  
+    <span class="o">}</span>  
+<span class="o">}</span>  
 </code></pre>
+</div>
 
 <p>test</p>
 
