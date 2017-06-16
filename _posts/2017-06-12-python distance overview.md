@@ -15,7 +15,7 @@ tags: python
 * **欧氏距离(Euclidean Distance)**
 * **曼哈顿距离(Manhattan Distance)**
 * 切比雪夫距离(Chebyshev Distance)
-* 夹角余弦(Cosine)
+* **夹角余弦(Cosine)**
 * 汉明距离(Hamming distance)
 * 杰卡德相似系数(Jaccard similarity coefficient)
 

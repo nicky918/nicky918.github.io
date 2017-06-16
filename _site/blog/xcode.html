@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="aexITLS38FdIRzwj25OVWxm87rpa9l-UV0URTyC9cTs" />
   <title>
-    LaTex：Markdown数学公式录入
+    Xcode：使用小结
     
   </title>
   <link rel="stylesheet" href="../css/site.css">
@@ -67,21 +67,21 @@
 <div class="inner">
 <div class = "post-header">
   <h1>
-    LaTex：Markdown数学公式录入
+    Xcode：使用小结
   </h1>
   <ul class="meta">
   	<i class="fa fa-calendar"></i>
-  	2017年06月13日
+  	2017年06月16日
   	<i class="space"></i>
   	<i class="fa fa-archive"></i>
-  	<a class="tag" href="http://localhost:4000/blog/categories.html#Markdown">Markdown</a>
+  	<a class="tag" href="http://localhost:4000/blog/categories.html#Xcode">Xcode</a>
   	<i class="space"></i>
   	<i class="fa fa-tags"></i>
   	
-  	    <a class="tag" href="http://localhost:4000/tag/#Markdown">Markdown</a>
+  	    <a class="tag" href="http://localhost:4000/tag/#Xcode">Xcode</a>
   	    <i class="space"></i>
   	
-  	<i class="space"></i> 字数:1682
+  	<i class="space"></i> 字数:1139
   </ul>
 </div>
 </div>
@@ -94,108 +94,81 @@
               </div>
           </div>
   	   <blockquote>
-  <p>引自<a href="http://blog.csdn.net/kamidox/article/details/48380239">http://blog.csdn.net/kamidox/article/details/48380239</a></p>
+  <p>window端有vistual studio , mac有xcode</p>
 </blockquote>
 
 <h2 id="综述">综述</h2>
 
-<p>在书写数值计算类文章，特别是机器学习相关算法时，难免需要插入复杂的数学公式。一种是用图片在网页上展示，另外一种是使用 <strong>MathJax</strong> 来展示复杂的数学公式。它直接使用 JavaScript 使用矢量字库或 SVG 文件来显示数学公式。优点是效果好，比如在 Retina 屏幕上也不会变得模糊。并且可以直接把公式写在 Markdown 文章里。本文介绍使用 MathJax 在 Markdown 文件里直接插入数学公式。并且附带一个简单的书写数学公式的 LaTex 教程。</p>
+<p>Xcode 是运行在操作系统Mac OS X上的集成开发工具（IDE），由苹果公司开发。Xcode是开发OS X 和 iOS 应用程序的最快捷的方式。Xcode 具有统一的用户界面设计，编码、测试、调试都在一个简单的窗口内完成。</p>
 
-<h2 id="latex-简明教程">LaTex 简明教程</h2>
+<h2 id="快捷键">快捷键</h2>
 
-<p>先来看个例子：</p>
+<blockquote>
+  <p>没试过，摘自baidu百科</p>
+</blockquote>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$$
-J(\theta) = \frac 1 2 \sum_{i=1}^m (h_\theta(x^{(i)})-y^{(i)})^2
-$$
+<div class="highlighter-rouge"><pre class="highlight"><code>- 文件
+
+CMD + N: 新文件； CMD + SHIFT + N: 新项目； CMD + O: 打开；
+CMD + S: 保存； CMD + SHIFT + S: 另存为；
+CMD + W: 关闭窗口； CMD + SHIFT + W: 关闭文件
+
+- 编辑
+
+CMD + [: 左缩进；CMD + ]: 右缩进；
+CMD + CTRL + LEFT: 折叠；CMD + CTRL + RIGHT: 取消折叠；
+CMD + CTRL + TOP: 折叠全部函数；CMD + CTRL + BOTTOM: 取消全部函数折叠；
+CTRL + U: 取消全部折叠；
+CMD + D: 添加书签； CMD + /: 注释或取消注释；
+CTRL + .: 参数提示； ESC: 自动提示列表
+
+- 调试
+
+CMD + \: 设置或取消断点；
+CMD + OPT + \: 允许或禁用当前断点；
+CMD + OPT + B: 查看全部断点；
+CMD + RETURN: 编译并运行（根据设置决定是否启用断点）；
+CMD + R: 编译并运行（不触发断点）；
+CMD + Y: 编译并调试（触发断点）；
+CMD + SHIFT + RETURN: 终止运行或调试；
+CMD + B: 编译；
+CMD + SHIFT + K: 清理；
 </code></pre>
 </div>
 
-<p>上面用 LaTex 格式书写的数学公式经过 MathJax 展示后效果如下：</p>
+<h2 id="创建普通项目">创建普通项目</h2>
 
-<script type="math/tex; mode=display">J(\theta) = \frac 1 2 \sum_{i=1}^m (h_\theta(x^{(i)})-y^{(i)})^2</script>
+<p>打开XCode之后，我们开始创建我们的第一个控制台程序“HelloWorld”了，顺便熟悉一下XCode的界面及使用。</p>
 
-<p>这个公式是线性回归算法里的成本函数。</p>
+<p>首先选择“Create a New Xcode project”，然后选择“Open”按钮；</p>
 
-<h2 id="规则">规则</h2>
+<p>左侧选择“Mac OS X”下面的“Application”，然后在右侧选择“Command Line Tool”（这表示我们要创建Mac操作系统下面的一个控制台应用程序），然后选择右下角的“Next”按钮；</p>
 
-<p>关于在 Markdown 书写 LaTex 数学公式有几个规则常用规则需要记住：</p>
+<p>输入项目名称、公司名称，然后选择“Next”按钮；</p>
 
-<p>行内公式 
-行内公式使用 $ 号作为公式的左右边界，如</p>
+<p>然后选择项目要保存的文件路径（只需选择项目存放在哪个文件夹，项目自身的文件夹会自行创建，不用再另行输入），然后选择“Create”按钮；</p>
 
-<p>$h(x) = \theta_0 + \theta_1 x$</p>
+<h2 id="配置">配置</h2>
 
-<p>公式的 LaTex 内容如下:</p>
+<p>因为刚接触xcode配置，摸索了几个小时的时间，因为本来我是在别人的项目基础来做的，发现一团乱，因此自己创建了一个，从头配置。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$h(x) = \theta_0 + \theta_1 x$
-</code></pre>
-</div>
+<p>项目包含opencv，及自定义的一些类库，</p>
 
-<p>行间公式 
-公式需要独立显示一行时，使用 $$ 来作为公式的左右边界，如</p>
+<p>因为之前有过c++经验，以linux上开发的经验，所以我们知道，如果要引用外部的一些类库，主要需要包含头文件及lib库</p>
 
-<script type="math/tex; mode=display">\theta_i = \theta_i - \alpha\frac\partial{\partial\theta_i}J(\theta)</script>
+<p>在xcode中配置如下，点击左侧项目，出现的项目属性中：</p>
 
-<p>的 LaTex 代码为：</p>
+<p><img src="../images/posts/2017/xcode1.png" alt="" /></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$$
-\theta_i = \theta_i - \alpha\frac\partial{\partial\theta_i}J(\theta)
-$$
-</code></pre>
-</div>
+<p>如上图所示，我们需要配置的模块有<code class="highlighter-rouge">Header Search Paths</code>，<code class="highlighter-rouge">Library Search Paths</code>，<strong><code class="highlighter-rouge">Runpath Search Paths</code></strong>(这里取决于我们在mac os下生成的lib中含有<code class="highlighter-rouge">@rpath</code>)</p>
 
-<h2 id="常用-latex-代码">常用 LaTex 代码</h2>
-<p>需要记住的几个常用的符号，这样书写起来会快一点</p>
+<blockquote>
+  <p><code class="highlighter-rouge">@rpath</code>这个就是今天要介绍的重点，它是run path的缩写。本质上它不是一个明确的path，甚至可以说它不是一个path。它只是一个变量，或者叫占位符。这个变量通过上图位置进行设置。设置好run path之后，所有的@rpath都会被替换掉。此外，run path是可以设置多个值的，这样看来就和Windows下的PATH变量差不多了。run path指定的多个值就可可以完美解决掉参考链接中说的问题了。</p>
+</blockquote>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: center">编码</th>
-      <th style="text-align: center">说明</th>
-      <th style="text-align: center">示例</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">\frac</td>
-      <td style="text-align: center">分子分母之间的横线</td>
-      <td style="text-align: center">$ \frac1{x} $</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">_</td>
-      <td style="text-align: center">用下划线来表示下标</td>
-      <td style="text-align: center">$x_1$</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">^</td>
-      <td style="text-align: center">次方运算符来表示上标</td>
-      <td style="text-align: center">$x^2$</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">\sum</td>
-      <td style="text-align: center">累加器，上下标用上面介绍的编码来书写</td>
-      <td style="text-align: center">$\sum_{x=1}^n$</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">\alpha</td>
-      <td style="text-align: center">希腊字母 alpha</td>
-      <td style="text-align: center">$\alpha$</td>
-    </tr>
-  </tbody>
-</table>
+<p>在配置的时候将相应的路径添加进去即可，需要注意的是，双击路径以添加多条：</p>
 
-<p>记住这几个就差不多了，倒回去看一下线性回归算法的成本函数的公式及其 LaTex 代码，对着练习个10分钟基本就可以掌握常用公式的写法了。要特别注意公式里空格和 {} 的运用规则。基本原则是，空格可加可不加，但如果会引起歧义，最好加上空格。{} 是用来组成群组的。比如写一个分式时，分母是一个复杂公式时，可以用 {} 包含起来，这样整个复杂公式都会变成分母了。</p>
-
-<h2 id="几个非常有用的资源">几个非常有用的资源</h2>
-
-<p>Github 上有个在线 <a href="https://kerzol.github.io/markdown-mathjax/editor.html">Markdown MathJax</a> 编辑器，可以在这里练习，平时写公式时也可以在这里先写好再拷贝到文章里.</p>
-
-<p>这是 <a href="http://www.forkosh.com/mathtextutorial.html">LaTex 完整教程</a>，包含完整的 LaTex 数学公式的内容，包括更高级的格式控制等.</p>
-
-<p>这是一份PDF格式的<code class="highlighter-rouge">MathJax 支持的数学符号表</code><a href="../documents/maths-symbols.pdf"><strong>本站浏览</strong></a>或<a href="http://mirrors.ctan.org/info/symbols/math/maths-symbols.pdf"><em>源地址</em></a>，当需要书写复杂数学公式时，一些非常特殊的符号的转义字符可以从这里查到。
-好啦，这样差不多就可以写出优美的数学公式啦。</p>
-
+<p><img src="../images/posts/2017/xcode2.png" alt="" /></p>
 
   	</div>
 	</div>
@@ -206,13 +179,9 @@ $$
 <ul class="pager">
     
     <li class="previous">
-       <a href="/blog/python-distance-overview.html">←python：距离实现综述</a>
+       <a href="/blog/markdown-latex.html">←LaTex：Markdown数学公式录入</a>
     </li>
     
-    
-    <li class="next">
-    	<a href="/blog/xcode.html">Xcode：使用小结→</a>
-    </li>
     
  </ul>
 </section>

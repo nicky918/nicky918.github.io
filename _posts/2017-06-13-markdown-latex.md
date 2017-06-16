@@ -74,8 +74,10 @@ $$
 
 ## 几个非常有用的资源
 
-Github 上有个在线 [Markdown MathJax](https://kerzol.github.io/markdown-mathjax/editor.html) 编辑器，可以在这里练习，平时写公式时也可以在这里先写好再拷贝到文章里
-这是 [LaTex 完整教程](http://www.forkosh.com/mathtextutorial.html)，包含完整的 LaTex 数学公式的内容，包括更高级的格式控制等
-这是一份PDF 格式的[MathJax 支持的数学符号表](http://mirrors.ctan.org/info/symbols/math/maths-symbols.pdf)，当需要书写复杂数学公式时，一些非常特殊的符号的转义字符可以从这里查到
+Github 上有个在线 [Markdown MathJax](https://kerzol.github.io/markdown-mathjax/editor.html) 编辑器，可以在这里练习，平时写公式时也可以在这里先写好再拷贝到文章里.
+
+这是 [LaTex 完整教程](http://www.forkosh.com/mathtextutorial.html)，包含完整的 LaTex 数学公式的内容，包括更高级的格式控制等.
+
+这是一份PDF格式的`MathJax 支持的数学符号表`[**本站浏览**](../documents/maths-symbols.pdf)或[*源地址*](http://mirrors.ctan.org/info/symbols/math/maths-symbols.pdf)，当需要书写复杂数学公式时，一些非常特殊的符号的转义字符可以从这里查到。
 好啦，这样差不多就可以写出优美的数学公式啦。
 
