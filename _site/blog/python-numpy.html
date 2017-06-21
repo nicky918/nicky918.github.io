@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="aexITLS38FdIRzwj25OVWxm87rpa9l-UV0URTyC9cTs" />
+  <title>
+    python：numpy
+    
+  </title>
+  <link rel="stylesheet" href="../css/site.css">
+  <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS Feed for Vista's blog" href="/feed.xml" />
+
+  
+
+  
+
+  
+</head>
+
+<body>
+  <div class="header-container">
+    <header class="inner">
+      
+      <nav>
+        <a class="" href="/">About</a>
+        <a class="" href="/project/">Project</a>
+        <!--<a class="" href="/resume/">Resume</a>
+	      <a href="/yuanyong_resume_cn.pdf">Resume</a>
+	      <a href="/YongYuan_resume.pdf">Resume</a>
+        <a class="" href="/publication/">Publication</a>-->
+        <a class="" href="/blog/">Blog</a>
+	      <a href="/books/">Book</a>
+		    <a href="/timeline/">Times</a>
+        <a href="http://git.oschina.net/vista918">oschina</a>
+        <a href="https://github.com/nicky918">github(少用)</a>
+      </nav>
+	  
+
+      <div class="pull-right right logo">
+        <!--<div class="name">
+          <a href="/">Yong Yuan</a><br />
+          <small>
+            <em>
+              
+                <a href="/">developer</a>
+              
+            </em>
+          </small>
+        </div>-->
+        <a href="https://nicky918.github.io/"><img class="avatar" src="/images/vista.jpg" alt="My profile picture" /></a>
+      </div>
+      <div class="clear"></div>
+    </header>
+    <div class="clear"></div>
+  </div>
+
+  <link rel="stylesheet" href="../css/blog.css">
+
+
+
+<div id="container">
+<article>
+<div class="inner">
+<div class = "post-header">
+  <h1>
+    python：numpy
+  </h1>
+  <ul class="meta">
+  	<i class="fa fa-calendar"></i>
+  	2017年06月16日
+  	<i class="space"></i>
+  	<i class="fa fa-archive"></i>
+  	<a class="tag" href="http://localhost:4000/blog/categories.html#python">python</a>
+  	<i class="space"></i>
+  	<i class="fa fa-tags"></i>
+  	
+  	    <a class="tag" href="http://localhost:4000/tag/#python">python</a>
+  	    <i class="space"></i>
+  	
+  	<i class="space"></i> 字数:4546
+  </ul>
+</div>
+</div>
+
+  <div class="post">
+        <div id="content">
+          <div class ="sidebox">
+              <div class ="sidebar">
+              <div class="toc"></div>
+              </div>
+          </div>
+  	   <blockquote>
+  <p>NumPy（Numerical Python的简称）是高性能科学 和数据分析的基础包</p>
+</blockquote>
+
+<h2 id="综述">综述</h2>
+
+<p>其重要功能如下：</p>
+<ol>
+  <li>ndarray，一个具有矢量运算和复杂广播能力的快速且节省空间的多维数组。</li>
+  <li>用于对数组数据进行快速运算的标准数学函数（无需编写循环）。</li>
+  <li>线性代数、随机数生成以及傅里叶变换功能。</li>
+  <li><code class="highlighter-rouge">import numpy as np</code></li>
+  <li><a href="https://docs.scipy.org/doc/numpy/reference/">官方文档</a></li>
+  <li><a href="http://python.usyiyi.cn/translate/NumPy_v111/index.html">中文文档</a></li>
+  <li><a href="https://docs.scipy.org/doc/numpy/contents.html">详细目录</a></li>
+</ol>
+
+<h2 id="数据创建函数">数据创建函数</h2>
+
+<p><code class="highlighter-rouge">NumPy</code>的主要对象是同质多维数组。它是一张表，所有元素（通常是数字）的类型都相同，并通过正整数元组索引。在NumPy中，维度称为轴。轴的数目为秩<code class="highlighter-rouge">rank</code>。</p>
+
+<p>例如，3D空间中的点的坐标<code class="highlighter-rouge">[1, 2, 1]</code>是rank为1的数组，因为它具有一个轴。该轴的长度为3。在下图所示的示例中，数组的rank为2（它是2维的）。第一维度（轴）的长度为2，第二维度的长度为3。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[[ 1., 0., 0.],
+ [ 0., 1., 2.]]
+</code></pre>
+</div>
+
+<p>NumPy的数组的类称为<code class="highlighter-rouge">ndarray</code>。别名为<code class="highlighter-rouge">array</code>。请注意，<code class="highlighter-rouge">numpy.array</code>与标准<code class="highlighter-rouge">Python</code>库的类<code class="highlighter-rouge">array.array</code>不同，后者仅处理一维数组并提供较少的功能。<code class="highlighter-rouge">ndarray</code>对象的更重要的属性是：</p>
+
+<p><code class="highlighter-rouge">ndarray.ndim</code></p>
+
+<p>数组的轴（维度）的个数。在<code class="highlighter-rouge">Python</code>世界中，维度的数量被称为<code class="highlighter-rouge">rank</code>。</p>
+
+<p><code class="highlighter-rouge">ndarray.shape</code></p>
+
+<p>数组的维度。这是一个整数的元组，表示每个维度中数组的大小。对于具有<code class="highlighter-rouge">n</code>行和<code class="highlighter-rouge">m</code>列的矩阵，<code class="highlighter-rouge">shape</code>将是<code class="highlighter-rouge">(n,m)</code>。因此，shape元组的长度就是<code class="highlighter-rouge">rank</code>或维度的个数<code class="highlighter-rouge">ndim</code>。</p>
+
+<p><code class="highlighter-rouge">ndarray.size</code></p>
+
+<p>数组元素的总数。这等于<code class="highlighter-rouge">shape</code>的元素的乘积。</p>
+
+<p><code class="highlighter-rouge">ndarray.dtype</code></p>
+
+<p>描述数组中元素类型的对象。可以使用标准Python类型创建或指定<code class="highlighter-rouge">dtype</code>。另外<code class="highlighter-rouge">NumPy</code>提供了自己的类型。例如<code class="highlighter-rouge">numpy.int32</code>、<code class="highlighter-rouge">numpy.int16</code>和<code class="highlighter-rouge">numpy.float64</code>。</p>
+
+<p><code class="highlighter-rouge">ndarray.itemsize</code></p>
+
+<p>数组中每个元素的字节大小。例如，元素为<code class="highlighter-rouge">float64</code>类型的数组的itemsize为<code class="highlighter-rouge">8（=64/8）</code>，而<code class="highlighter-rouge">complex32</code>类型的数组的<code class="highlighter-rouge">comitemsize</code>为<code class="highlighter-rouge">4（=32/8）</code>。它等于<code class="highlighter-rouge">ndarray.dtype.itemsize</code>。</p>
+
+<p><code class="highlighter-rouge">ndarray.data</code></p>
+
+<p>该缓冲区包含数组的实际元素。通常，我们不需要使用此属性，因为我们将使用索引访问数组中的元素。</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">2.2</span><span class="p">,</span><span class="mf">3.3</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">data</span>                           <span class="c">#[ 1.1  2.2  3.3]</span>
+<span class="k">print</span> <span class="n">data</span><span class="o">.</span><span class="n">dtype</span>                     <span class="c">#float64</span>
+<span class="k">print</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>                     <span class="c">#(3L,)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">*</span><span class="mi">10</span>                       <span class="c">#不同于python里面列表的运算</span>
+<span class="k">print</span> <span class="n">data</span>                           <span class="c">#[ 11.  22.  33.]</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">data</span><span class="o">.</span><span class="n">dtype</span>                     <span class="c">#int16</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[ 1.1  2.2  3.3]
+float64
+(3,)
+[ 11.  22.  33.]
+int16
+</code></pre>
+</div>
+
+<h2 id="元素级数组函数">元素级数组函数</h2>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">arr</span>           <span class="c">#[0 1 2 3 4 5 6 7 8 9]</span>
+<span class="k">print</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="c">#[ 0. 1. 1.41421356 1.73205081 2. 2.23606798  2.44948974 2.64575131 2.82842712 3.]</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">x</span>
+<span class="k">print</span> <span class="n">y</span>
+<span class="k">print</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c">#输出</span>
+<span class="c"># [  6.44384037e-01   4.77467240e-01  -1.63710500e+00  -2.23397938e-01</span>
+<span class="c">#    2.42823340e-04   2.90417057e-01   1.59116209e+00  -9.84905419e-01]</span>
+<span class="c"># [-0.83284853  1.37952239  0.21118756 -0.17092715  0.01228589  1.54071412</span>
+<span class="c">#   1.44245279  0.63661402]</span>
+<span class="c"># [ 0.64438404  1.37952239  0.21118756 -0.17092715  0.01228589  1.54071412</span>
+<span class="c">#   1.59116209  0.63661402]</span>
+</code></pre>
+</div>
+
+<h2 id="基本数组统计方法">基本数组统计方法</h2>
+
+<h2 id="数据的集合运算">数据的集合运算</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>numpy.unique    查找数组的唯一元素。
+</code></pre>
+</div>
+
+<h2 id="常用的numpylinalg函数linear-algebra">常用的numpy.linalg函数（Linear algebra）</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>dot（a，b [，out]）	两个数组的点积。
+linalg.norm（x [，ord，axis，keepdims]）	矩阵或向量范数。
+linalg.solve（a，b）	求解线性矩阵方程或线性标量方程组。
+linalg.tensorsolve（a，b [，axes]）	为x解出张量方程 ax = b 
+linalg.lstsq（a，b [，rcond]）	将最小二乘解返回到线性矩阵方程。
+linalg.inv（a）	计算矩阵的（乘法）逆。
+linalg.pinv（a [，rcond]）	计算矩阵的（Moore-Penrose）伪逆。
+linalg.tensorinv（a [，ind]）	计算N维数组的“逆”。
+</code></pre>
+</div>
+
+<h2 id="部分numpyrandom函数">部分numpy.random函数</h2>
+
+<h2 id="数组连接函数">数组连接函数</h2>
+
+<h2 id="takewherecopy">take、where、copy</h2>
+
+<p><code class="highlighter-rouge">take</code></p>
+
+<p>从轴沿一个数组中取元素。</p>
+
+<p>参数：
+a：源数组。indices：要提取的值的索引。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>arr = np.arange(10)*100
+inds = [7,1,2,6]
+print arr.take(inds)      #[700 100 200 600]
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">where</code></p>
+
+<p>numpy.where函数是三元表达式x if condition else y的矢量化版本。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>arr = np.random.randn(4,4)
+print arr
+
+[[ 1.19717763 -0.741477   -2.15110668 -0.46468596]
+ [-1.13466991  1.10899501 -1.61028763 -0.6177533 ]
+ [ 1.95222784 -0.00466218 -1.23314358  0.75340766]
+ [ 0.24350204 -0.23099947  0.11610512  0.21914577]]
+
+print np.where(arr &lt; 0, 0, arr)
+
+[[ 1.19717763  0.          0.          0.        ]
+ [ 0.          1.10899501  0.          0.        ]
+ [ 1.95222784  0.          0.          0.75340766]
+ [ 0.24350204  0.          0.11610512  0.21914577]]
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">copy</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>data_copy = data.copy（） # 可以得到一份副本，并不影响原来的数据
+</code></pre>
+</div>
+
+<h2 id="引用">引用</h2>
+
+<ol>
+  <li><a href="http://blog.csdn.net/a819825294/article/details/53200601">http://blog.csdn.net/a819825294/article/details/53200601</a></li>
+</ol>
+
+  	</div>
+	</div>
+</article>
+
+<!--翻页功能-->
+<section class="inner">
+<ul class="pager">
+    
+    <li class="previous">
+       <a href="/blog/python-base.html">←python：基础使用</a>
+    </li>
+    
+    
+    <li class="next">
+    	<a href="/blog/xcode.html">Xcode：使用小结→</a>
+    </li>
+    
+ </ul>
+</section>
+
+<!--评论功能-->
+<!-- Disqus Comment BEGIN -->
+<!--
+<section class="comments inner duoshuo">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'yongyuan'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+-->
+<!-- Disqus Comment END -->
+
+</section>
+</div>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    <!--displayMath: [['$$','$$'], ['\[','\]']],-->
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+
+
+  <!--<div class="separator"></div>-->
+
+  <footer>
+    <div  style="border-bottom: 1px solid #eee"></div>
+    <p class="linkings">
+        <a href="http://www.pyimagesearch.com/">pyimagesearch</a>&nbsp&nbsp&nbsp&nbsp<a href="http://bean.logdown.com/">bean</a>&nbsp&nbsp&nbsp&nbsp<a href="http://ml.memect.com/">ml dairy</a>&nbsp&nbsp&nbsp&nbsp<a href="http://rogerioferis.com/VisualRecognitionAndSearch2014/Resources.html/">Resources</a>
+    </p>
+    <p class="linkings">
+        Utils: <a href="http://rogerioferis.com/VisualRecognitionAndSearch2014/Resources.html">rogerioferis</a>&nbsp&nbsp&nbsp&nbsp<a href="http://caffe.berkeleyvision.org/">Caffe</a>&nbsp&nbsp&nbsp&nbsp<a href="http://scikit-learn.org/stable/index.html">scikit-learn</a>&nbsp&nbsp&nbsp&nbsp<a href="http://www.astroml.org/index.html">AstroML</a></a>&nbsp&nbsp&nbsp&nbsp<a href="http://scikit-image.org/">scikit-image</a></a>&nbsp&nbsp&nbsp&nbsp<a href="http://gitxiv.com/">GitXiv</a>
+    </p>
+    <p>
+      Made with <a href="http://jekyllrb.com/">Jekyll</a>(<a href="http://jekyll.com.cn/">中文</a>),
+      hosted on <a href="https://github.com/nicky918/nicky918.github.io">Github Pages</a>. Inspired by <a href="http://sebastien.saunier.me/">saunier</a>, designed by <a href="https://nicky918.github.io/">vista</a>.
+    </p>
+    </p>
+      <a href="http://www.easycounter.com/"><img src="http://www.easycounter.com/counter.php?vista"border="0" alt="Website Hit Counter"></a> since August 2013.
+    </p>
+    <ul class="links">
+    </ul>
+  </footer>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+</body>
+</html>

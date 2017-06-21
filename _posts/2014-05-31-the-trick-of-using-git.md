@@ -16,8 +16,9 @@ sudo apt-get install git
 GitHub用到了SSH，需要在shell里检查是否连接到GitHub:
 
 ```sh
-willard@willard-PC~/github/blog $ ssh -T git@github.com
-Hi willard-yuan! You've successfully authenticated, but GitHub does not provide shell access.
+vista@vistaMac ~/P/git> ssh -T git@github.com
+Warning: Permanently added the RSA host key for IP address '192.30.255.113' to the list of known hosts.
+Hi nicky918! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 上面表明添加成功。
 
@@ -26,7 +27,7 @@ Hi willard-yuan! You've successfully authenticated, but GitHub does not provide 
 比较常见的将远程版本库中的代码clone到本地的方式如下：
 
 ```sh
-git clone git@github.com:willard-yuan/blog.git
+git clone https://git.oschina.net/vista918/SeetaFaceEngine.git
 ```
 
 ## 其他常用Git命令
@@ -47,41 +48,26 @@ git push origin :branch_you_want_to_delete #删除远程分支（注意空格，
 
 ## 示例
 
-```sh
-willard@willard-PC~/github $ git clone git@github.com:willard-yuan/pcvwithpython.git
-Cloning into 'pcvwithpython'...
-remote: Reusing existing pack: 1960, done.
-remote: Total 1960 (delta 0), reused 0 (delta 0)
-Receiving objects: 100% (1960/1960), 58.58 MiB | 2.10 MiB/s, done.
-Resolving deltas: 100% (671/671), done.
-Checking connectivity... done.
-```
 克隆下来后，便可以对项目的文件进行修改添加，修改添加完成后，提交到远程版本控制库：
 
 ```sh
-willard@willard-PC~/github/pcvwithpython $ git add .
-willard@willard-PC~/github/pcvwithpython $ git commit -m "update content in ch07"[gh-pages 221c8bc] update content in ch07
+vista@vistaMac ~/P/git> git add .
+vista@vistaMac ~/P/git> git commit -m "update content in ch07"[gh-pages 221c8bc] update content in ch07
  1 file changed, 4 insertions(+)
 ```
 在push之前，我们先来查看一下当前项目远程连接的是哪个版本库地址：
 
 ```sh
-willard@willard-PC~/github/pcvwithpython $ git remote -v
-origin	git@github.com:willard-yuan/pcvwithpython.git (fetch)
-origin	git@github.com:willard-yuan/pcvwithpython.git (push)
+vista@vistaMac ~/P/g/nicky918.github.io> git remote -v
+origin	https://github.com/nicky918/nicky918.github.io.git (fetch)
+origin	https://github.com/nicky918/nicky918.github.io.git (push)
 ```
 然后push:
 
 ```sh
-git push
-```
-注意，这里本小子并没有用`git push origin master`,用该命令，出现下面错误：
-
-```sh
-willard@willard-PC~/github/pcvwithpython $ git push origin master
-Warning: Permanently added the RSA host key for IP address '2001:778:0:ffff:64:0:c01e:fc83' to the list of known hosts.
-error: src refspec master does not match any.
-error: failed to push some refs to 'git@github.com:willard-yuan/pcvwithpython.git
+git push origin master
+or
+git push oschina master
 ```
 暂时就这样吧。
 

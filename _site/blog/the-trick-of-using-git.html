@@ -81,7 +81,7 @@
   	    <a class="tag" href="http://localhost:4000/tag/#Git">Git</a>
   	    <i class="space"></i>
   	
-  	<i class="space"></i> 字数:2174
+  	<i class="space"></i> 字数:1534
   </ul>
 </div>
 </div>
@@ -103,8 +103,9 @@
 
 <p>GitHub用到了SSH，需要在shell里检查是否连接到GitHub:</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>willard@willard-PC~/github/blog <span class="nv">$ </span>ssh -T git@github.com
-Hi willard-yuan! You<span class="s1">'ve successfully authenticated, but GitHub does not provide shell access.
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>vista@vistaMac ~/P/git&gt; ssh -T git@github.com
+Warning: Permanently added the RSA host key <span class="k">for </span>IP address <span class="s1">'192.30.255.113'</span> to the list of known hosts.
+Hi nicky918! You<span class="s1">'ve successfully authenticated, but GitHub does not provide shell access.
 </span></code></pre>
 </div>
 <p>上面表明添加成功。</p>
@@ -113,7 +114,7 @@ Hi willard-yuan! You<span class="s1">'ve successfully authenticated, but GitHub 
 
 <p>比较常见的将远程版本库中的代码clone到本地的方式如下：</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>git clone git@github.com:willard-yuan/blog.git
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>git clone https://git.oschina.net/vista918/SeetaFaceEngine.git
 </code></pre>
 </div>
 
@@ -135,41 +136,26 @@ git push origin :branch_you_want_to_delete <span class="c">#删除远程分支�
 
 <h2 id="示例">示例</h2>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>willard@willard-PC~/github <span class="nv">$ </span>git clone git@github.com:willard-yuan/pcvwithpython.git
-Cloning into <span class="s1">'pcvwithpython'</span>...
-remote: Reusing existing pack: 1960, <span class="k">done</span>.
-remote: Total 1960 <span class="o">(</span>delta 0<span class="o">)</span>, reused 0 <span class="o">(</span>delta 0<span class="o">)</span>
-Receiving objects: 100% <span class="o">(</span>1960/1960<span class="o">)</span>, 58.58 MiB | 2.10 MiB/s, <span class="k">done</span>.
-Resolving deltas: 100% <span class="o">(</span>671/671<span class="o">)</span>, <span class="k">done</span>.
-Checking connectivity... <span class="k">done</span>.
-</code></pre>
-</div>
 <p>克隆下来后，便可以对项目的文件进行修改添加，修改添加完成后，提交到远程版本控制库：</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>willard@willard-PC~/github/pcvwithpython <span class="nv">$ </span>git add .
-willard@willard-PC~/github/pcvwithpython <span class="nv">$ </span>git commit -m <span class="s2">"update content in ch07"</span><span class="o">[</span>gh-pages 221c8bc] update content <span class="k">in </span>ch07
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>vista@vistaMac ~/P/git&gt; git add .
+vista@vistaMac ~/P/git&gt; git commit -m <span class="s2">"update content in ch07"</span><span class="o">[</span>gh-pages 221c8bc] update content <span class="k">in </span>ch07
  1 file changed, 4 insertions<span class="o">(</span>+<span class="o">)</span>
 </code></pre>
 </div>
 <p>在push之前，我们先来查看一下当前项目远程连接的是哪个版本库地址：</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>willard@willard-PC~/github/pcvwithpython <span class="nv">$ </span>git remote -v
-origin	git@github.com:willard-yuan/pcvwithpython.git <span class="o">(</span>fetch<span class="o">)</span>
-origin	git@github.com:willard-yuan/pcvwithpython.git <span class="o">(</span>push<span class="o">)</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>vista@vistaMac ~/P/g/nicky918.github.io&gt; git remote -v
+origin	https://github.com/nicky918/nicky918.github.io.git <span class="o">(</span>fetch<span class="o">)</span>
+origin	https://github.com/nicky918/nicky918.github.io.git <span class="o">(</span>push<span class="o">)</span>
 </code></pre>
 </div>
 <p>然后push:</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>git push
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>git push origin master
+or
+git push oschina master
 </code></pre>
-</div>
-<p>注意，这里本小子并没有用<code class="highlighter-rouge">git push origin master</code>,用该命令，出现下面错误：</p>
-
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>willard@willard-PC~/github/pcvwithpython <span class="nv">$ </span>git push origin master
-Warning: Permanently added the RSA host key <span class="k">for </span>IP address <span class="s1">'2001:778:0:ffff:64:0:c01e:fc83'</span> to the list of known hosts.
-error: src refspec master does not match any.
-error: failed to push some refs to <span class="s1">'git@github.com:willard-yuan/pcvwithpython.git
-</span></code></pre>
 </div>
 <p>暂时就这样吧。</p>
 
