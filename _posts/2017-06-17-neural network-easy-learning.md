@@ -11,15 +11,27 @@ tags: 深度学习
 
 [感知器](https://www.zybuluo.com/hanbingtao/note/433855)
 
-## 线性单元和梯度下降
+## 线性单元和梯度(`GD`)下降
 
 [线性单元和梯度下降](https://www.zybuluo.com/hanbingtao/note/448086)
 
 
-## 神经网络和反向传播算法
+## 神经网络和反向传播(`bp`)算法
 
 [神经网络和反向传播算法](https://www.zybuluo.com/hanbingtao/note/476663)
 
-## 卷积神经网络
+## 卷积`Convolutional`神经网络(`CNN`)
 
 [卷积神经网络](https://www.zybuluo.com/hanbingtao/note/485480)
+
+## 循环（`Recurrent`）神经网络(`RNN`)
+
+[循环神经网络](https://zybuluo.com/hanbingtao/note/541458)
+
+## 长短时记忆网络（`LSTM`）
+
+[长短时记忆网络](https://zybuluo.com/hanbingtao/note/581764)(Long Short Term Memory Network, LSTM)
+
+## 递归(Recursive)神经网络（`RNN`）
+
+[递归神经网络](https://zybuluo.com/hanbingtao/note/626300)

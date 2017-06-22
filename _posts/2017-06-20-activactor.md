@@ -57,7 +57,30 @@ $$
 f(x) = \left\{ \begin{array}{rcl} 1,x>c \\ 0,x \leqslant c \end{array} \right.\qquad  \qquad \text{阈值函数}
 $$
 
-## sigmoid函数
+## $softmax$回归函数
+
+这里需要介绍一下，因为在tensorflow的mnist分类中使用的示例激活函数就是采用了这个
+公式：
+$$
+softmax(x) = normalize(e^x)
+$$
+
+展开上式
+
+$$
+softmax(x)_i = \frac{e^{x_i}}{\sum_je^{x_j}}
+$$
+
+计算损失公式`“交叉熵”（cross-entropy）`：
+
+$$
+H_{y'}(y) = - \sum_i y'_i log(y_i)
+$$
+
+$y$是我们预测的概率分布, $y'$是实际的分布。比较粗糙的理解是，交叉熵是用来衡量我们的预测用于描述真相的低效性。
+
+
+## $sigmoid$函数
 
 Sigmoid函数曾被广泛地应用，但由于其自身的一些缺陷，现在很少被使用了。
 定义：
@@ -81,7 +104,7 @@ $$f'(x)=f(x)(1-f(x))$$
 1.由于其软饱和性，容易产生梯度消失，导致训练出现问题。
 2.其输出并不是以0为中心的。
 
-## tanh函数
+## $tanh$函数
 现在，比起Sigmoid函数我们通常更倾向于tanh函数。tanh函数被定义为
 $$
 tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}
@@ -98,7 +121,7 @@ $$
 缺点：
 还是没有改变Sigmoid函数的最大问题——由于饱和性产生的梯度消失。
 
-## Relu(Rectified Linear Units)函数
+## $Relu$(Rectified Linear Units)函数
 
 最近几年卷积神经网络中，激活函数往往不选择sigmoid或tanh函数，而是选择relu函数。Relu函数的定义是：
 $$
