@@ -34,6 +34,8 @@ tags: 图像检索
 
 <h2 id="3">CEDD全局算子</h2>
 
+> 在1.0版本APP中，主要使用的算子就是CEDD算子，其原理与效果如下
+
 [图像检索：CEDD（Color and Edge Directivity Descriptor）算法](http://blog.csdn.net/leixiaohua1020/article/details/16883379)
 
 `CEDD`的英文全称是Color and Edge Directivity Descriptor，即颜色和边缘方向特征描述符。它结合了图像的颜色和纹理信息，生成一个(`24*6`)位的直方图。这个特征提取方法可以分为两个子模块系统，提取颜色信息的是颜色模块，提取纹理信息的是纹理模块。CEDD直方图信息由六个区域组成，也就是纹理模块，六个区域就是提取出的6维向量直方图，然后在这些纹理信息的每一维中再加入颜色模块提取出的24维颜色信息，这样就可以将颜色和纹理有效结合起来，最终得出**6*24=144**维的直方图信息。
@@ -236,11 +238,10 @@ edgeThreshold调整
 
 ![](../images/posts/2017/flow-1.png)
 
-# 引用
+## 引用
 
 1. 【<span id="lire">[**LIRe**](http://www.lire-project.net/),[**github**](https://github.com/dermotte/lire)</span>】
 2. 【[图像检索：CEDD（Color and Edge Directivity Descriptor）算法](http://blog.csdn.net/leixiaohua1020/article/details/16883379)】
-3. 【[Self-Normalizing Neural Networks](https://arxiv.org/abs/1706.02515)】
 
 ## 附
 
