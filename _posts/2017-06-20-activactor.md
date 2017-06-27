@@ -114,7 +114,9 @@ $$
 f(x) = 1 - (f(x))^2
 $$
 函数位于[-1, 1]区间上，对应的图像是:
+
 ![](../images/posts/2017/act-5.jpg)
+
 优点：
 1.比Sigmoid函数收敛速度更快。
 2.相比Sigmoid函数，其输出以0为中心。
@@ -146,7 +148,19 @@ Relu函数图像如下图所示：
 缺点：
 随着训练的进行，可能会出现神经元死亡，权重无法更新的情况。如果发生这种情况，那么流经神经元的梯度从这一点开始将永远是0。也就是说，ReLU神经元在训练中不可逆地死亡了。
 
+## Self-Normalizing Neural Networks【`SNN`】
+
+```python
+def selu(x):
+    with tf.name_scope('selu') as scope:
+        alpha = 1.6732632423543772848170429916717
+        scale = 1.0507009873554804934193349852946
+        return scale * tf.where(x>=0.0,x,alpha*tf.nn.elu(x))
+```
+
+
 # 引用
 
 1. 【[CSDN 神经网络中的激活函数](http://blog.csdn.net/losteng/article/details/50833861)】
 2. 【[cnblogs 浅谈深度学习中的激活函数 - The Activation Function in Deep Learning](http://www.cnblogs.com/rgvb178/p/6055213.html)】
+3. 【[Self-Normalizing Neural Networks](https://arxiv.org/abs/1706.02515)】
