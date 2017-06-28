@@ -19,6 +19,7 @@ tags: 图像检索
 * [SIFT](#6)
 * [SIFT算法调整](#7)
 * [最终流程](#8)
+* [试用于辅料](#9)
 
 <h2 id="1">问题</h2>
 
@@ -183,7 +184,7 @@ SIFT::SIFT(int nfeatures=0, int nOctaveLayers=3, double contrastThreshold=0.04, 
     sigma：金字塔第0层图像高斯滤波系数，也就是σ。
 	
 
-edgeThreshold调整
+**<font color="#f0f">edgeThreshold</font>**调整
 
 > 采用默认值-10
 
@@ -238,10 +239,17 @@ edgeThreshold调整
 
 ![](../images/posts/2017/flow-1.png)
 
+<h2 id="9">试用于辅料</h2>
+
+![](../images/posts/2017/sift-21.png)
+
+![](../images/posts/2017/sift-22.png)
+
 ## 引用
 
 1. 【<span id="lire">[**LIRe**](http://www.lire-project.net/),[**github**](https://github.com/dermotte/lire)</span>】
 2. 【[图像检索：CEDD（Color and Edge Directivity Descriptor）算法](http://blog.csdn.net/leixiaohua1020/article/details/16883379)】
+3. 【[图像特征— —SIFT特征](http://blog.csdn.net/sin_geek/article/details/52661670)】
 
 ## 附
 
