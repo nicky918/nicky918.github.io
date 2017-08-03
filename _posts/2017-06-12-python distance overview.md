@@ -17,7 +17,7 @@ tags: python
 * 切比雪夫距离(Chebyshev Distance)
 * **夹角余弦(Cosine)**
 * 汉明距离(Hamming distance)
-* 杰卡德相似系数(Jaccard similarity coefficient)
+* **杰卡德相似系数(Jaccard similarity coefficient)**
 
 读者可根据自己需求有选择的学习。因使用矢量编程的方法，距离计算得到了较大的简化。
 
@@ -101,6 +101,21 @@ print vect2
 
 print np.dot(vect1,vect2)/( np.linalg.norm(vect1) * np.linalg.norm(vect2) )
 ```
+
+## 杰卡德相似系数(Jaccard similarity coefficient)
+
+### 杰卡德相似系数
+两个集合A和B的交集元素在A，B的并集中所占的比例，称为两个集合的杰卡德相似系数，用符号J(A,B)表示。
+$$
+J(A,B) = \frac{|A \cap B|}{|A \cup B|}
+$$
+杰卡德相似系数是衡量两个集合的相似度一种指标。
+
+### 杰卡德距离	
+Jaccard距离用来度量两个集合之间的差异性，它是Jaccard的相似系数的补集，被定义为1减去Jaccard相似系数。
+$$
+J_{\delta}(A,B) = 1- J(A,B) = \frac{|A \cup B|-|A \cap B|}{|A \cup B|}
+$$
 
 ## 引用
 
