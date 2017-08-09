@@ -5,13 +5,11 @@ categories: [数据分析]
 tags: 数据分析demo
 ---
 
-<!--
-<span id="top"></span>
+<!--<span id="top"></span>
 
 macdown下使用这条命令去生成toc 
 
-[toc] 
--->
+[toc] -->
 
 
 * TOC
@@ -22,7 +20,7 @@ macdown下使用这条命令去生成toc
 * 开发语言：Java 1.8
 * 后台框架：Springboot 2.0.0.M3 
 * 搜索组件：ElasticSearch 5.5.1
-* UI组件：Kibana 5.5.1
+* UI组件：Kibana 5.5.1, echarts
 * 数据来源: Mysql测试数据库
 
 > 其中UI组件使用kibana做一些原型展示，应用的时候可以改为定制的展示形式
@@ -94,6 +92,21 @@ orderId	userId	status	orderAmount	payAmount	couponAmount	cneeName	cneeAddr	cneeP
 周销量柱状图
 
 ![](../images/posts/2017/ebu/data-o-1.png)
+
+### 用户分布地理位置分布
+
+来源：表`T_Cnee_Addr` 数据 89
+
+单条记录示例
+
+```sql
+addrId	userId	name	area	addr	phone	updateTime	postcode	isDefault
+261	15590	王双福	广东省 广州市 番禺区	钟村祈福工业园3栋2楼	15825475253	2017-05-26 18:20:41		1
+```
+
+地理位置分布图：
+
+![](../images/posts/2017/ebu/data-a-1.png)
 
 ## 展望
 
