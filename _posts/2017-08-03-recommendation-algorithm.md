@@ -15,6 +15,18 @@ macdown下使用这条命令去生成toc
 {:toc}
 
 > 推荐系统的任务就是解决，当用户无法准确描述自己的需求时，搜索引擎的筛选效果不佳的问题。联系用户和信息，一方面帮助用户发现对自己有价值的信息，另一方面让信息能够展现在对他感兴趣的人群中，从而实现信息提供商与用户的双赢。
+> 推荐引擎，是建立在对每一个用户的信息和行为深刻了解的基础之上，为用户提供个人化信息的技术，它不是被动等待用户的搜索请求，而是为用户主动推送最相关的信息。
+
+## 推荐引擎工作原理
+下图展示了推荐系统（或称推荐引擎）的工作原理。它的输入是推荐的数据源，一般情况下，推荐引擎所需要的数据源包括：
+
+* 要推荐物品或内容的元数据，例如关键字，基本描述等；
+* 系统用户的基本信息，例如性别，年龄等；
+* 用户对物品或者信息的偏好，例如用户对物品的评分，用户查看物品的记录，用户的购买记录等。
+
+![](../images/posts/2017/r-1.png)
+
+推荐引擎根据不同的推荐机制可能用到数据源中的一部分或全部，然后在这些数据的基础上结合推荐算法将不同信息推荐给不同用户。
 
 ## 推荐算法介绍
 
@@ -47,7 +59,36 @@ macdown下使用这条命令去生成toc
 * 物品相似度的衡量标准只考虑到了物品本身，有一定的片面性
 * 需要用户的物品的历史数据，有冷启动的问题
 
-### 协同过滤
+### 协同过滤（Collaborative Filtering recommendation）
+
+>协同过滤推荐（Collaborative Filtering recommendation，后文简称CF）在信息过滤和信息系统中正迅速成为一项很受欢迎的技术。与传统的基于内容过滤直接分析内容进行推荐不同，协同过滤分析用户兴趣，在用户群中找到指定用户的相似（兴趣）用户，综合这些相似用户对某一信息的评价，形成系统对该指定用户对此信息的喜好程度预测。
+
+从上面的定义可以看出，协同过滤是一种集体智慧的体现，也就是基于兴趣群体的推荐技术。例如，你现在想观看一部新电影，但并不知道看哪一部。这种时候，大部分人都会选择询问有相同电影偏好的朋友，让他们推荐一两部电影。这便是协同过滤的集体智慧体现。
+
+从上面咨询朋友进行电影推荐的例子中，我们可以粗略总结出协同过滤推荐的步骤：
+
+* 根据历史资料总结出用户偏好或者资料特征；
+* 计算需要推荐的对象相似度；
+* 进行推荐。
+
+不难发现，整个算法有两个难点：
+
+* 如何计算对象间的相似度；
+* 相似度计算完之后，如何找到对象的邻居。
+
+这里推荐三种相似度计算：
+
+* Euclidean Distance
+* Pearson Correlation Coefficient
+* Cosine Similarity
+
+具体参考另一篇博文：[距离综述](/blog/python-distance-overview.html)
+
+常用的计算相似邻居的算法有两种：
+
+* k近邻（K-neighborhoods），在另外一篇博文也讨论过了
+* 基于相似度门槛的邻居（Threshold-based neighborhoods ）
+
 
 协同过滤是推荐算法中最经典最常用的，分为基于用户的协同过滤和基于物品的协同过滤。那么他们和基于人口学统计的推荐和基于内容的推荐有什么区别和联系呢？
 
@@ -72,6 +113,179 @@ macdown下使用这条命令去生成toc
 * 对于一些特殊品味的用户不能给予很好的推荐
 * 由于以历史数据为基础，抓取和建模用户的偏好后，很难修改或者根据用户的使用演变，从而导致这个方法不够灵活
 
+
+#### 两种协同过滤算法的比较
+
+社交类网站如，微博，facebook。这类网站有一个特点，用户数目到达一定程度之后会保持稳定，但物品（这里指网站上的各类新闻资讯，应用等）的数目却一直保持快速增长，否则肯定会造成用户流失。对于这类网站，User CF比较适用，因为Item CF的计算量由于物品的不断增加而十分大。反而User CF计算量会小很多。
+
+而对于非社交类网站如电子商务购物平台，用户的数量往往大大超过物品的数量，同时物品的数据相对稳定，因此计算物品的相似度不但计算量较小，同时也不必频繁更新。
+
+此外这两种算法也存在不同的使用场景，举例说明。当给用户推荐一个新款包包的时候，根据User CF给用户的提示是：与你有相同爱好的“XXX”用户也喜欢这个包包，这时用户的反应是“XXX”是谁，跟我有什么关系。不同的是，根据Item CF给用户的提示会是：根据您以前的购物记录我们猜你喜欢这个包包，这时用户也许就会点击进去浏览甚至购买。
+
+当然除了上述两种应用方式，Item CF对于推荐结果的多样性会比User CF差不少。因此在应用协同过滤算法的时候，开发人员需要结合实际应用场景选择不同算法，甚至选择混合协同过滤，这样会取得更好的推荐效果，所带来的收益也会增加。
+
+#### java实现
+
+这里给出了基于用户的协同过滤算法简单实现，在相似度计算上采用皮尔逊相关系数。
+
+```java
+/**
+ * @name:CF algorithm
+ * @author:希慕_North
+ * @function:User-based Collaborative Filtering algorithm.
+ * @date:09/04/2015
+ */
+
+package RS;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+public class CF {
+
+    public static void main(String[] args) {
+        Map<String, Map<String, Integer>> userPerfMap = new HashMap<String, Map<String, Integer>>();
+        Map<String, Integer> pref1 = new HashMap<String, Integer>();
+        pref1.put("A", 3);
+        pref1.put("B", 4);
+        pref1.put("C", 3);
+        pref1.put("D", 5);
+        pref1.put("E", 1);
+        pref1.put("F", 4);
+        userPerfMap.put("p1", pref1);
+        Map<String, Integer> pref2 = new HashMap<String, Integer>();
+        pref2.put("A", 2);
+        pref2.put("B", 4);
+        pref2.put("C", 4);
+        pref2.put("D", 5);
+        pref2.put("E", 3);
+        pref2.put("F", 2);
+        userPerfMap.put("p2", pref2);
+        Map<String, Integer> pref3 = new HashMap<String, Integer>();
+        pref3.put("A", 3);
+        pref3.put("B", 5);
+        pref3.put("C", 4);
+        pref3.put("D", 5);
+        pref3.put("E", 2);
+        pref3.put("F", 1);
+        userPerfMap.put("p3", pref3);
+        Map<String, Integer> pref4 = new HashMap<String, Integer>();
+        pref4.put("A", 2);
+        pref4.put("B", 2);
+        pref4.put("C", 3);
+        pref4.put("D", 4);
+        pref4.put("E", 3);
+        pref4.put("F", 2);
+        userPerfMap.put("p4", pref4);
+        Map<String, Integer> pref5 = new HashMap<String, Integer>();
+        pref5.put("A", 4);
+        pref5.put("B", 4);
+        pref5.put("C", 4);
+        pref5.put("D", 5);
+        pref5.put("E", 1);
+        pref5.put("F", 0);
+        userPerfMap.put("p5", pref5);
+
+        Map<String, Double> simUserSimMap = new HashMap<String, Double>();
+        System.out.println("皮尔逊相关系数:");
+
+        for (Entry<String, Map<String, Integer>> userPerfEn : userPerfMap.entrySet()) {
+            String userName = userPerfEn.getKey();
+            if (!"p5".equals(userName)) {
+                double sim = getUserSimilar(pref5, userPerfEn.getValue());
+                System.out.println("    p5与" + userName + "之间的相关系数:" + sim);
+                simUserSimMap.put(userName, sim);
+            }
+        }
+
+        Map<String, Map<String, Integer>> simUserObjMap = new HashMap<String, Map<String, Integer>>();
+        Map<String, Integer> pobjMap1 = new HashMap<String, Integer>();
+        pobjMap1.put("玩命速递", 3);
+        pobjMap1.put("环太平洋", 4);
+        pobjMap1.put("变形金刚", 3);
+        simUserObjMap.put("p1", pobjMap1);
+        Map<String, Integer> pobjMap2 = new HashMap<String, Integer>();
+        pobjMap2.put("玩命速递", 5);
+        pobjMap2.put("环太平洋", 1);
+        pobjMap2.put("变形金刚", 2);
+        simUserObjMap.put("p2", pobjMap2);
+        Map<String, Integer> pobjMap3 = new HashMap<String, Integer>();
+        pobjMap3.put("玩命速递", 2);
+        pobjMap3.put("环太平洋", 5);
+        pobjMap3.put("变形金刚", 5);
+        simUserObjMap.put("p3", pobjMap3);
+
+        System.out.println("推荐结果:" + getRecommend(simUserObjMap, simUserSimMap));
+    }
+
+    //Claculate Pearson Correlation Coefficient
+    public static double getUserSimilar(Map<String, Integer> pm1, Map<String, Integer> pm2) {
+        int n = 0;// 数量n
+        int sxy = 0;// Σxy=x1*y1+x2*y2+....xn*yn
+        int sx = 0;// Σx=x1+x2+....xn
+        int sy = 0;// Σy=y1+y2+...yn
+        int sx2 = 0;// Σx2=(x1)2+(x2)2+....(xn)2
+        int sy2 = 0;// Σy2=(y1)2+(y2)2+....(yn)2
+        for (Entry<String, Integer> pme : pm1.entrySet()) {
+            String key = pme.getKey();
+            Integer x = pme.getValue();
+            Integer y = pm2.get(key);
+            if (x != null && y != null) {
+                n++;
+                sxy += x * y;
+                sx += x;
+                sy += y;
+                sx2 += Math.pow(x, 2);
+                sy2 += Math.pow(y, 2);
+            }
+        }
+        // p=(Σxy-Σx*Σy/n)/Math.sqrt((Σx2-(Σx)2/n)(Σy2-(Σy)2/n));
+        double sd = sxy - sx * sy / n;
+        double sm = Math.sqrt((sx2 - Math.pow(sx, 2) / n) * (sy2 - Math.pow(sy, 2) / n));
+        return Math.abs(sm == 0 ? 1 : sd / sm);
+    }
+
+    //get recommendation results
+    public static String getRecommend(Map<String, Map<String, Integer>> simUserObjMap,
+            Map<String, Double> simUserSimMap) {
+        Map<String, Double> objScoreMap = new HashMap<String, Double>();
+        for (Entry<String, Map<String, Integer>> simUserEn : simUserObjMap.entrySet()) {
+            String user = simUserEn.getKey();
+            double sim = simUserSimMap.get(user);
+            for (Entry<String, Integer> simObjEn : simUserEn.getValue().entrySet()) {
+                double objScore = sim * simObjEn.getValue();
+                String objName = simObjEn.getKey();
+                if (objScoreMap.get(objName) == null) {
+                    objScoreMap.put(objName, objScore);
+                } else {
+                    double totalScore = objScoreMap.get(objName);
+                    objScoreMap.put(objName, totalScore + objScore);
+                }
+            }
+        }
+        List<Entry<String, Double>> enList = new ArrayList<Entry<String, Double>>(objScoreMap.entrySet());
+        Collections.sort(enList, new Comparator<Map.Entry<String, Double>>() {
+            public int compare(Map.Entry<String, Double> o1, Map.Entry<String, Double> o2) {
+                Double a = o1.getValue() - o2.getValue();
+                if (a == 0) {
+                    return 0;
+                } else if (a > 0) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            }
+        });
+        return enList.get(enList.size() - 1).getKey();
+    }
+}
+```
+
 ### 混合推荐算法
 
 以上介绍的方法是推荐领域最常见的几种方法。但是可以看出，每个方法都不是完美的。因此实际应用中都是混合使用各种推荐算法，各取所长。我们的大量医疗数据中，也可以多考虑一下什么情况下更适合使用哪种推荐算法，能更好的为医生提供诊断信息
@@ -83,18 +297,6 @@ macdown下使用这条命令去生成toc
 找到与目标用户兴趣相似的用户集合
 找到这个集合中用户喜欢的、并且目标用户没有听说过的物品推荐给目标用户
 发现兴趣相似的用户
-
-通常用$Jaccard$公式或者`余弦相似度`计算两个用户之间的相似度。设 $N(u)$ 为用户 $u$ 喜欢的物品集合，$N(v)$ 为用户 $v$ 喜欢的物品集合，那么 $u$ 和 $v$ 的相似度是多少呢?
-
-`Jaccard` 公式：
-
-$$
-J(N(u),N(v)) = \frac{|N(u) \cap N(v)|}{|N(u) \cup N(v)|}
-$$
-
-具体可以参考
-
-[python：距离实现综述](/blog/python-distance-overview.html)
 
 假设目前共有4个用户： A、B、C、D；共有5个物品：a、b、c、d、e。用户与物品的关系（用户喜欢物品）如下图所示：
 
@@ -153,3 +355,7 @@ $$
 ## 引用
 
 (1) [推荐系统的常用算法原理和实现](http://blog.csdn.net/xsl_bj/article/details/51120643)
+
+(2) [推荐引擎之协同过滤算法——深度剖析及源码实现](http://blog.csdn.net/yangmuted/article/details/48197129)
+
+(3) [协同过滤](https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy2/index.html)
