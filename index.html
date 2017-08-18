@@ -1,58 +1,66 @@
 ---
 layout: default
-category: about
-title: nicky918's homepage
-description: I am vista.
+category: about-zh
+language: cn
+title: 汤圆甜筒
+description: 这是汤圆甜筒的个人主页。
 ---
 
 <section class="about-me inner">
   <h1>
     <div class="book-me">
-      <a class="btn btn-lg" href="/cn/">Chinese</a>
+      <!--<a class="btn btn-lg" href="/contact">联系我</a>-->
+      <!--<a class="btn btn-lg" href="/">英文</a>-->
     </div>
-    <span class="hello">
-      <em>Working</em>
-      <small>makes life better.
-    </span>
+    <span class="hello">欢迎访问，这里是技术交流中心</span>
   </h1>
 
   <blockquote>
   <p>
-    Cease to struggle and you cease to live, and play life on hard mode.
+    随便写一下｡◕‿◕｡
   </p>
   </blockquote>
-
   <p>
-    I am <a href="/"><span itemprop="name">vista</span></a>
+    这是<a href="/"><span itemprop="name">晋超</span></a>的个人主页，目前就职于衣布到位，职位为图形算法和大数据搜索工程师。希望结识更多同道中人。
   </p>
-
   <p>
-    My work interests cover <strong>Content-based Image Retrieval</strong> (four years experience), <strong>Deep Learning</strong>, <strong>Computer Vision</strong>, <strong>Web Development Based on Django</strong>,
-    and <strong>Scientific Computing with Python</strong>.
+    主要兴趣集中在<strong>图像检索</strong>(4年+)、<strong>深度学习</strong>，<strong>计算机视觉</strong>方向，除此之外还会涉及数据挖掘、科学计算、Web全栈，系统运维</strong>等方面的知识。
   </p>
-
   <p>
-    I support open source(@<a href="http://git.oschina.net/vista918">vista<i class="icon-github"></i>)</a>, love Linux and Python. In my free time, I dive into writing, translating English book about technology, reading <a href="http://git.oschina.net/vista918">books</a> to improve myself.
+    大家可以Follow我的开源中国<a href="http://git.oschina.net/vista918">@vista<i class="icon-github"></i></a>或是GitHub<a href="https://github.com/nicky918">@vista<i class="icon-github"></i></a>
+    本人擅长技术：<br>
+    1. 熟悉WINDOWS/LINUX/MAC系统下程序开发，有多年实践项目开发经验;熟练掌握linux常用shell命令;<br>
+    2. 熟悉MVC框架，熟悉C/S，B/S体系结构;<br>
+    3. 了解并会使用Visual studio, Idea, webstorm, pycharmstorm, Clion, CodeBlocks, QtCreator, phpstorm, xcode等常见开发工具;<br>
+    4. 熟悉研发项目管理流程,曾负责团队统一的研发流程规范制定和实施工作，注重团队交流与项目时间进度安排;<br>
+    5. 具备良好的沟通协调能力和分析能力,对工作认真负责,能胜任较大压力;<br>
+    6. 具备良好的编码规范和风格，熟悉markdown,latex等常用文本撰写语法，熟悉SVN，GIT主流版本控制软件的使用;<br>
+    7. 精通C/C++,C#,Java,python,html,css,javascript等编程语言,并做过实践应用开发，熟悉java web及php web开发;<br>
+    8. 精通数字图像处理相关算法，如二值化，直方图均衡化，分割，旋转，光学校正，特征定位，SVM分类，FFT信号检测,SIFT特征摄取等;<br>
+    9. 精通多种语言下多线程开发，熟悉网络编程，精通多种语言混合编程技术;<br>
+    10.精通MFC,QT,OpenCV等库的开发使用，了解部分matlab。精通图形图像技术;<br>
+    11.熟悉数据库编程;<br>
+    12.了解PHP语言与thinkphp，Laraval框架结构;<br>
+    13.熟悉Java编程，spring,springboot,mybatis等后台开发技术;<br>
+    14.熟悉tensorflow开源机器学习框架，会使用设计NN,CNN,DNN,多种RNN结构学习方法;熟悉支持向量机分类及常用的回归，聚类方法;<br>
+    15.熟悉Lire,ElasticSearch,Filebeats,logstash,kibana等框架,了解hadoop,hbase等大数据平台技术<br>
   </p>
-
 </section>
 
 <section class="inner">
-  <div class="post-recents-in-index">
-    <strong>Recent blog posts</strong>
-  </div>
-  <blockquote>
-    <ul>
-      {% for post in site.posts limit:3 %}
-      <li class="post-list-in-index">
-      <small class="post-list-date-in-index">{{ post.date | date_to_string }}</small><a  href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-  </blockquote>
+<div class="post-recents-in-index">
+<strong>最近写作</strong>
+</div>
+<blockquote>
+<ul>
+    {% for post in site.posts limit:3 %}
+    <li class="post-list-in-index">
+    <small class="post-list-date-in-index">{{ post.date | date_to_string }}</small><a  href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+</blockquote>
   <p>
-    nothing...
+    留言提取内容，todo
   </p>
 </section>
-
-<!--<a href="https://github.com/willard-yuan/willard-yuan.github.io"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>-->
