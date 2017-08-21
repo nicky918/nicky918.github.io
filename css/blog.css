@@ -101,7 +101,7 @@ ul.posts {
 }
 
 .inner, pre code, .post > * {
-  max-width: 1020px; /*760*/
+  max-width: 1000px; /*760*/
   margin-left: auto;
   margin-right: auto;
   text-align: left;
