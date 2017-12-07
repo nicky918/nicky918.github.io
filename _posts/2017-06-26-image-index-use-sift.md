@@ -11,8 +11,8 @@ tags: 图像检索
 
 ## 目录
 
-* [问题](#1) 
-* [框架](#2) 
+* [问题](#1)
+* [框架](#2)
 * [CEDD](#3)
 * [探索其他的方法](#4)
 * [色彩算法](#5)
@@ -25,7 +25,7 @@ tags: 图像检索
 
 |项目|详述|
 |:--:|:--:|
-|图库大小|30W->100W+，目前70W|
+|图库大小|200W+|
 |目标|通过拍照的图片进行检索，根据相似度列出搜索结果|
 
 <h2 id="2">框架</h2>
@@ -76,18 +76,18 @@ tags: 图像检索
 
 SIFT（Scale-invariant feature transform）是一种检测局部特征的算法，该算法通过求一幅图中的特征点（interest points,or corner points）及其有关scale 和 orientation 的描述子得到特征并进行图像特征点匹配，获得了良好效果，详细解析如下：
 
-> 算法描述 
+> 算法描述
 
-SIFT特征不只具有尺度不变性，即使改变旋转角度，图像亮度或拍摄视角，仍然能够得到好的检测效果。整个算法分为以下几个部分： 
+SIFT特征不只具有尺度不变性，即使改变旋转角度，图像亮度或拍摄视角，仍然能够得到好的检测效果。整个算法分为以下几个部分：
 
-1. 构造尺度空间：DoG尺度空间 
-1. 检测DoG尺度空间极值点 
-1. 去除不好的特征点 
-1. 给特征点赋值一个128维的方向参数。每个关键点都包含三个信息：位置、尺度和方向。 
+1. 构造尺度空间：DoG尺度空间
+1. 检测DoG尺度空间极值点
+1. 去除不好的特征点
+1. 给特征点赋值一个128维的方向参数。每个关键点都包含三个信息：位置、尺度和方向。
 1. 关键点描述子的生成
- 
+
 具体可以去这篇博文看一下：
-[图像特征— —SIFT特征](http://blog.csdn.net/sin_geek/article/details/52661670) 
+[图像特征— —SIFT特征](http://blog.csdn.net/sin_geek/article/details/52661670)
 
 SIFT算法的特点：
 
@@ -182,7 +182,7 @@ SIFT::SIFT(int nfeatures=0, int nOctaveLayers=3, double contrastThreshold=0.04, 
     contrastThreshold：过滤掉较差的特征点的对阈值。contrastThreshold越大，返回的特征点越少。
     edgeThreshold：过滤掉边缘效应的阈值。edgeThreshold越大，特征点越多（被多滤掉的越少）。
     sigma：金字塔第0层图像高斯滤波系数，也就是σ。
-	
+
 
 **<font color="#f0f">edgeThreshold</font>**调整
 
