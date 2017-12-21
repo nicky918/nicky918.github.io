@@ -38,5 +38,5 @@ hard_wrap: false
 #  coderay_line_numbers:  nil
 
 # White-listed plugins
-gems:
+plugins:
   - jekyll-sitemap
